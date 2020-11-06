@@ -138,7 +138,7 @@ ynh_store_file_checksum --file="$final_path/.env"
 
 # Set permissions on app files
 chown -R $app: $final_path
-chmod -R 750 /home/yunohost.$app/{uploads,data}
+#chmod -R 750 /home/yunohost.$app/{uploads,data}
 
 #=================================================
 # RELOAD NGINX
