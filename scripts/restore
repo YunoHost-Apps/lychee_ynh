@@ -65,10 +65,10 @@ ynh_system_user_create --username=$app
 #=================================================
 # RESTORE DATA
 #=================================================
-ynh_script_progression --message="Restoring Lychee data..."
+#ynh_script_progression --message="Restoring Lychee data..."
 
 # Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
-ynh_restore_file --origin_path="/home/yunohost.$app" --not_mandatory
+#ynh_restore_file --origin_path="/home/yunohost.$app" --not_mandatory
 
 #=================================================
 # RESTORE USER RIGHTS
