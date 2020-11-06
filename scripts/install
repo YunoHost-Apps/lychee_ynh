@@ -144,7 +144,7 @@ mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import}
 # Set permissions to app files
 chown -R $app: $final_path
 chown -R $app: /home/yunohost.${app}
-chmod -R 750 /home/yunohost.${app}/uploads
+chmod -R 750 /home/yunohost.${app}
 
 #=================================================
 # SETUP SSOWAT
