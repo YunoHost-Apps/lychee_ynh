@@ -76,7 +76,7 @@ ynh_system_user_create --username=$app
 
 # Restore permissions on app files
 chown -R $app: $final_path
-chmod -R 750 /home/yunohost.$app/{uploads,data}
+#chmod -R 750 /home/yunohost.$app/{uploads,data}
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
@@ -103,11 +103,10 @@ ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name < ./
 #=================================================
 # RELOAD NGINX AND PHP-FPM
 #=================================================
-ynh_script_progression --message="Reloading nginx web server and php-fpm..."
+ynh_script_progression --message="Reloading NGINX web server and PHP-FPM..."
 
 ynh_systemd_action --service_name=php$phpversion-fpm --action=reload
 ynh_systemd_action --service_name=nginx --action=reload
-
 
 #=================================================
 # END OF SCRIPT

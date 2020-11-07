@@ -35,7 +35,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_backup --src_path="$final_path"
 
 #=================================================
-# BACKUP MEDIA
+# BACKUP MEDIA FOLDER
 #=================================================
 
 #ynh_backup --src_path="/home/yunohost.$app" --is_big

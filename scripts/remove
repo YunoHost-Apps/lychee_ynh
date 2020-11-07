@@ -34,7 +34,7 @@ ynh_secure_remove --file="$final_path"
 #=================================================
 # REMOVE THE MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Removing the MySQL database..."
+ynh_script_progression --message="Removing the MySQL database..." --weight=2
 
 # Remove a database if it exists, along with the associated user
 ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
@@ -50,7 +50,7 @@ ynh_remove_nginx_config
 #=================================================
 # REMOVE PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Removing PHP-FPM configuration..."
+ynh_script_progression --message="Removing PHP-FPM configuration..." --weight=2
 
 # Remove the dedicated PHP-FPM config
 ynh_remove_fpm_config
@@ -60,7 +60,7 @@ ynh_remove_fpm_config
 #=================================================
 # REMOVE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Removing the dedicated system user..."
+ynh_script_progression --message="Removing the dedicated system user..." --weight=1
 
 # Delete a system user
 ynh_system_user_delete --username=$app

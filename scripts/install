@@ -99,7 +99,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 # INSTALL LYCHEE WITH COMPOSER
 #=================================================
-ynh_script_progression --message="Installing Lychee with Composer..." --weight=45
+ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
 # Install composer
 ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
@@ -109,7 +109,7 @@ ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" -
 #=================================================
 ynh_script_progression --message="Building..."
 
-# setup application config
+# Setup application config
 cp ../conf/.env.example $final_path/.env
 
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/.env"

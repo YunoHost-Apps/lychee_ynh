@@ -117,9 +117,9 @@ ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependenc
 #=================================================
 # INSTALL AND INITIALIZE COMPOSER
 #=================================================
-ynh_script_progression --message="Installing Composer..."
+ynh_script_progression --message="Installing Composer..." --weight=10
 
-# Install composer
+# Install Composer
 ynh_install_composer
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"

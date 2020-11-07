@@ -1,15 +1,15 @@
 # Lychee for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)  
-[![Install lychee with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=lychee)
+[![Install Lychee with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=lychee)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
-> *This package allows you to install Encryptic quickly and simply on a YunoHost server.  
+> *This package allows you to install Lychee quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
-Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely. Read more on our website.
+Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.
 
 **Shipped version:** 4.0.7
 
@@ -23,12 +23,12 @@ Lychee is a free photo-management tool, which runs on your server or web-space. 
 
 ## Configuration
 
-How to configure this app: From an admin panel, a plain file with SSH, or any other way.
+How to configure this app: From an admin panel.
 
 ## Documentation
 
  * Official documentation: https://lycheeorg.github.io/docs/
- * YunoHost documentation: If specific documentation is needed, feel free to contribute.
+ * YunoHost documentation: https://yunohost.org/#/app_lychee
 
 ## YunoHost specific features
 
@@ -52,7 +52,7 @@ How to configure this app: From an admin panel, a plain file with SSH, or any ot
 
 ## Links
 
- * Report a bug: https://github.com/YunoHost-Apps/encryptic_ynh/issues
+ * Report a bug: https://github.com/YunoHost-Apps/lychee_ynh/issues
  * App website: https://lycheeorg.github.io/
  * Upstream app repository: https://github.com/LycheeOrg/Lychee
  * YunoHost website: https://yunohost.org/
