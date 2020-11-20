@@ -18,6 +18,7 @@ app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 
@@ -30,6 +31,7 @@ ynh_script_progression --message="Removing Lychee main directory..." --weight=3
 
 # Remove the app directory securely
 ynh_secure_remove --file="$final_path"
+ynh_secure_remove --file="$public_path"
 
 #=================================================
 # REMOVE THE MYSQL DATABASE

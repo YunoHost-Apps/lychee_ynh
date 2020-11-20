@@ -20,6 +20,7 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 is_public=$(ynh_app_setting_get --app=$app --key=is_public)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
@@ -54,6 +55,16 @@ fi
 if [ -z "$final_path" ]; then
 	final_path=/var/www/$app
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+# If public_path doesn't exist, create it
+if [ -z "$public_path" ]; then
+        public_path=/home/yunohost.app/$app
+        ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+fi
+
+if [ ! -d "$public_path/uploads" ]; then
+        mkdir -p $public_path/uploads
 fi
 
 #=================================================
@@ -138,7 +149,8 @@ ynh_store_file_checksum --file="$final_path/.env"
 
 # Set permissions on app files
 chown -R $app: $final_path
-#chmod -R 750 /home/yunohost.$app/{uploads,data}
+chown -R $app: $public_path
+chmod -R 750 $public_path
 
 #=================================================
 # RELOAD NGINX
