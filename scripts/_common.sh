@@ -116,5 +116,3 @@ ynh_multimedia_addfolder () {
 
     ./yunohost.multimedia-master/script/ynh_media_addfolder.sh --source="$source_dir" --dest="$dest_dir"
 }
-
-
