@@ -65,7 +65,7 @@ ynh_script_progression --message="Setting up source files..." --weight=3
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"
+ynh_setup_source --dest_dir=$final_path
 
 #=================================================
 # CREATE DIRECTORIES
@@ -73,7 +73,7 @@ ynh_setup_source --dest_dir="$final_path"
 
 ynh_app_setting_set --app=$app --key=public_path --value=$public_path
 mkdir -p ${public_path}/uploads
-mkdir -p ${public_path}/uploads/{big,medium,small,thumb,import}
+mkdir -p ${public_path}/uploads/{big,import,medium,raw,small,thumb}
 
 #=================================================
 # NGINX CONFIGURATION
@@ -82,13 +82,6 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config "public_path"
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-#ynh_script_progression --message="Adding multimedia directories..." --weight=2
-
-#ynh_multimedia_build_main_dir
 
 #=================================================
 # CREATE DEDICATED USER
@@ -113,7 +106,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
 # Install composer
-ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
+ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
 
 #=================================================
 # BUILDING
