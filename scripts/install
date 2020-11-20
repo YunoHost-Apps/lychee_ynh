@@ -75,6 +75,9 @@ ynh_app_setting_set --app=$app --key=public_path --value=$public_path
 mkdir -p ${public_path}/uploads
 mkdir -p ${public_path}/uploads/{big,import,medium,raw,small,thumb}
 
+# Create a dedicated NGINX config
+ynh_add_nginx_config "public_path"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
