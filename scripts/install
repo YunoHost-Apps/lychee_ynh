@@ -126,18 +126,18 @@ ynh_script_progression --message="Building..."
 # Setup application config
 cp ../conf/.env.example $final_path/.env
 
+# Setup custum user.css file
+cp ../conf/user.css $final_path/public/dist/user.css
+
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/.env"
 ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$final_path/.env"
 ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/.env"
 
-# setup application config
+# Setup application config
 cd $final_path && php$phpversion artisan key:generate -n --force --env
 cd $final_path && php$phpversion artisan migrate -n --force
 cd $final_path && php$phpversion artisan config:clear -n
 cd $final_path && php$phpversion artisan config:cache -n
-
-# Setup custum user.css file
-cp -f ../conf/user.css $final_path/public/dist/user.css
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
