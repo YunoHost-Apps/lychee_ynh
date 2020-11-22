@@ -139,6 +139,9 @@ cd $final_path && php$phpversion artisan migrate -n --force
 cd $final_path && php$phpversion artisan config:clear -n
 cd $final_path && php$phpversion artisan config:cache -n
 
+# Setup custum user.css file
+#cp ../conf/user.css.example $final_path/public/dist/user.css
+
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================

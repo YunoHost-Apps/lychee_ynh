@@ -1,0 +1,14 @@
+/* Disable the 'zoom' animation while browsing pictures */
+#imageview #image {
+  transition: none !important;
+  animation-name: none !important;
+  animation-duration: 0 !important;
+}
+
+/* Hide smart albums */
+/*
+[data-id="0"] { display:none; }
+[data-id="s"] { display:none; }
+[data-id="f"] { display:none; }
+[data-id="r"] { display:none; }
+*/
