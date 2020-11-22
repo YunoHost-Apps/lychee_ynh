@@ -33,6 +33,9 @@ ynh_script_progression --message="Validating installation parameters..." --weigh
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
+public_path=/home/yunohost.app/$app
+test ! -e "${public_path}" || ynh_die --message="${public_path} already exists"
+
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
 
@@ -44,6 +47,13 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=is_public --value=$is_public
+
+#=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=3
+
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -62,7 +72,18 @@ ynh_script_progression --message="Setting up source files..." --weight=3
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"
+ynh_setup_source --dest_dir=$final_path
+
+#=================================================
+# CREATE DIRECTORIES
+#=================================================
+
+ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+mkdir -p ${public_path}/uploads
+mkdir -p ${public_path}/uploads/{big,import,medium,raw,small,thumb}
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config "public_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -70,14 +91,7 @@ ynh_setup_source --dest_dir="$final_path"
 ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-#ynh_script_progression --message="Adding multimedia directories..." --weight=2
-
-#ynh_multimedia_build_main_dir
+ynh_add_nginx_config "public_path"
 
 #=================================================
 # CREATE DEDICATED USER
@@ -102,7 +116,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
 # Install composer
-ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
+ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
 
 #=================================================
 # BUILDING
@@ -122,6 +136,9 @@ cd $final_path && php$phpversion artisan migrate -n --force
 cd $final_path && php$phpversion artisan config:clear -n
 cd $final_path && php$phpversion artisan config:cache -n
 
+# Setup custum user.css file
+#cp ../conf/user.css.example $final_path/public/dist/user.css
+
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
@@ -131,20 +148,13 @@ ynh_script_progression --message="Storing the config file checksum..."
 ynh_store_file_checksum "$final_path/.env"
 
 #=================================================
-# CREATE DIRECTORIES
-#=================================================
-
-#mkdir -p /home/yunohost.${app}/uploads
-#mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import}
-
-#=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
 # Set permissions to app files
 chown -R $app: $final_path
-#chown -R $app: /home/yunohost.${app}
-#chmod -R 750 /home/yunohost.${app}
+chown -R $app: ${public_path}
+chmod -R 755 ${public_path}
 
 #=================================================
 # SETUP SSOWAT
