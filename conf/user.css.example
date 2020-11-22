@@ -12,3 +12,12 @@
 [data-id="f"] { display:none; }
 [data-id="r"] { display:none; }
 */
+
+/* Make the diadnostic font bigger */
+.settings_view p, .settings_view a, .settings_view input,
+.sharing_view p, .sharing_view a, .sharing_view input,  .sharing_view option,
+.users_view p, .users_view a, .users_view input, .users_view option,
+.logs_diagnostics_view pre {
+    font-size: 24pt;
+    line-height: 24pt;
+}
