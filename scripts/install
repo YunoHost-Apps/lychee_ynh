@@ -137,13 +137,12 @@ cd $final_path && php$phpversion artisan migrate -n --force
 cd $final_path && php$phpversion artisan config:clear -n
 cd $final_path && php$phpversion artisan config:cache -n
 
-# Setup custum user.css file
-cp ../conf/user.css $final_path/public/dist/user.css
+# Setup custom user.css file
+cp ../conf/user.css.example $final_path/public/dist/user.css
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
 #=================================================
-ynh_script_progression --message="Storing the config file checksum..."
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum "$final_path/.env"
