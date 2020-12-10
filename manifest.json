@@ -6,7 +6,7 @@
         "en": "Photo-management-system to manage and share photos.",
         "fr": "Système de gestion de photos pour gérer et partager des photos."
     },
-    "version": "4.0.8~ynh1",
+    "version": "4.0.8~ynh2",
     "url": "https://lycheeorg.github.io/",
     "license": "MIT",
     "maintainer": {
@@ -49,6 +49,10 @@
                 "ask": {
                     "en": "Is it a public application?",
                     "fr": "Est-ce une application publique ?"
+                },
+                "help": {
+                    "en": "If enabled, Lychee will be accessible by people who do not have an account. This can be changed later via the webadmin.",
+                    "fr": "Si cette case est cochée, Lychee sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
                 },
                 "default": true
             }
