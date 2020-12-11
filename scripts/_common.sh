@@ -8,6 +8,9 @@ YNH_PHP_VERSION=7.3
 
 extra_php_dependencies="php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-imagick php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-exif php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-gd php${YNH_PHP_VERSION}-mysqli php${YNH_PHP_VERSION}-json php${YNH_PHP_VERSION}-zip"
 
+# needed for raw upload and video playback
+pkg_dependencies="ufraw-batch ffmpeg"
+
 #=================================================
 # EXPERIMENTAL HELPERS
 #=================================================
@@ -65,7 +68,7 @@ ynh_install_composer () {
     curl -sS https://getcomposer.org/installer 2>&1 \
         | COMPOSER_HOME="$workdir/.composer" \
         php${phpversion} -- --quiet --install-dir="$workdir" --version=$composerversion \
-        || ynh_die "Unable to install Composer."
+        || ynh_die "Unable to install Composer." 2>&1
 
     # update dependencies to create composer.lock
     ynh_composer_exec --phpversion="${phpversion}" --workdir="$workdir" --commands="install --no-dev $install_args" \
