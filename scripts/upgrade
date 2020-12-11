@@ -136,9 +136,11 @@ ynh_install_composer
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
-( cd $final_path && php$phpversion artisan migrate -n --force )
-( cd $final_path && php$phpversion artisan config:clear -n )
-( cd $final_path && php$phpversion artisan config:cache -n )
+pushd "$final_path"
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n
+	php$phpversion artisan config:cache -n
+popd
 
 ynh_backup_if_checksum_is_different --file="$final_path/.env"
 # Recalculate and store the checksum of the file for the next upgrade.
