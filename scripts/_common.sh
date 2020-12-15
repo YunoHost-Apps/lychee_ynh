@@ -62,7 +62,7 @@ ynh_install_composer () {
     install_args="${install_args:-}"
     composerversion="${composerversion:-$YNH_COMPOSER_VERSION}"
 
-    curl -sS https://getcomposer.org/installer \
+    curl -sS https://getcomposer.org/installer 2>&1 \
         | COMPOSER_HOME="$workdir/.composer" \
         php${phpversion} -- --quiet --install-dir="$workdir" --version=$composerversion \
         || ynh_die "Unable to install Composer."
