@@ -83,7 +83,7 @@ ynh_restore_file --origin_path="/home/yunohost.$app" --not_mandatory
 
 # Restore permissions on app files
 chown -R $app: $final_path
-chmod -R 750 /home/yunohost.$app
+chmod -R 755 /home/yunohost.$app
 
 #=================================================
 # RESTORE THE PHP-FPM CONFIGURATION
