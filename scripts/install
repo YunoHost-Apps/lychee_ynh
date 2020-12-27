@@ -104,6 +104,8 @@ ynh_script_progression --message="Installing Lychee with Composer..." --weight=1
 # Install composer
 ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
 
+ynh_exec_warn_less ynh_composer_exec update --lock
+
 #=================================================
 # BUILDING
 #=================================================
@@ -118,7 +120,6 @@ ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_fil
 
 # setup application config
 pushd "$final_path"
-	php$phpversion artisan upgrade
 	php$phpversion artisan key:generate -n --force --env
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
@@ -160,8 +161,6 @@ ynh_script_progression --message="Configuring SSOwat..." --weight=1
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission "main" --add "visitors"
 fi
 
