@@ -77,9 +77,25 @@ ynh_abort_if_errors
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
+	
+	tmpdir="$(mktemp -d)"
+	
+	# Backup the config file in the temp dir
+	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
+	cp -R "$final_path/public/dist/uploads" "$tmpdir/uploads"
+
+	# Remove the app directory securely
+	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
+
+	# Copy the admin saved settings from tmp directory to final path	
+	cp -a "$tmpdir/user.css" "$final_path/public/dist/user.css" 
+	cp -R "$final_path/uploads" "$final_path/public/dist/uploads"
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
 fi
 
 #=================================================
@@ -127,9 +143,6 @@ popd
 ynh_backup_if_checksum_is_different --file="$final_path/.env"
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum --file="$final_path/.env"
-
-# Setup custom user.css file
-cp ../conf/user.css.example $final_path/public/dist/user.css
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
