@@ -82,7 +82,6 @@ then
 	
 	# Backup the config file in the temp dir
 	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
-	cp -R "$final_path/public/dist/uploads" "$tmpdir/uploads"
 
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
@@ -92,7 +91,6 @@ then
 
 	# Copy the admin saved settings from tmp directory to final path	
 	cp -a "$tmpdir/user.css" "$final_path/public/dist/user.css" 
-	cp -R "$final_path/uploads" "$final_path/public/dist/uploads"
 
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
