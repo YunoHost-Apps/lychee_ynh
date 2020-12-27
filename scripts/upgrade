@@ -96,6 +96,13 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 ynh_add_nginx_config
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=3
+
+ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Making sure dedicated system user exists..."
@@ -121,8 +128,7 @@ ynh_script_progression --message="Installing Composer..." --weight=10
 # Install Composer
 ynh_install_composer
 
-ynh_exec_warn_less ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands=\"dump-autoload\"
-ynh_exec_warn_less ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands="update --lock"
+ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
 pushd "$final_path"
 	php$phpversion artisan migrate -n --force
@@ -140,7 +146,7 @@ ynh_store_file_checksum --file="$final_path/.env"
 
 # Set permissions on app files
 chown -R $app: $final_path
-#chmod -R 750 /home/yunohost.$app/{uploads,data}
+chmod -R 750 /home/yunohost.$app
 
 #=================================================
 # RELOAD NGINX
