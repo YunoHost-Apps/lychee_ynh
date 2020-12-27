@@ -141,8 +141,8 @@ ynh_store_file_checksum "$final_path/.env"
 # CREATE DIRECTORIES
 #=================================================
 
-#mkdir -p /home/yunohost.${app}/uploads
-#mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import}
+mkdir -p /home/yunohost.${app}/uploads
+mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import,raw}
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -150,8 +150,8 @@ ynh_store_file_checksum "$final_path/.env"
 
 # Set permissions to app files
 chown -R $app: $final_path
-#chown -R $app: /home/yunohost.${app}
-#chmod -R 750 /home/yunohost.${app}
+chown -R $app: /home/yunohost.${app}
+chmod -R 750 /home/yunohost.${app}
 
 #=================================================
 # SETUP SSOWAT
