@@ -56,6 +56,13 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=3
+
+ynh_install_app_dependencies $pkg_dependencies
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=3
@@ -71,13 +78,6 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-#ynh_script_progression --message="Adding multimedia directories..." --weight=2
-
-#ynh_multimedia_build_main_dir
 
 #=================================================
 # CREATE DEDICATED USER
@@ -104,7 +104,7 @@ ynh_script_progression --message="Installing Lychee with Composer..." --weight=1
 # Install composer
 ynh_install_composer
 
-ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands="update --lock"
+#ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands="update --lock"
 
 #=================================================
 # BUILDING
@@ -141,8 +141,8 @@ ynh_store_file_checksum "$final_path/.env"
 # CREATE DIRECTORIES
 #=================================================
 
-mkdir -p /home/yunohost.${app}/uploads
-mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import,raw}
+mkdir -p /home/yunohost.$app/uploads
+mkdir -p /home/yunohost.$app/uploads/{big,medium,small,thumb,import,raw}
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -150,8 +150,8 @@ mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import,raw}
 
 # Set permissions to app files
 chown -R $app: $final_path
-chown -R $app: /home/yunohost.${app}
-chmod -R 750 /home/yunohost.${app}
+chown -R $app: /home/yunohost.$app
+chmod -R 750 /home/yunohost.$app
 
 #=================================================
 # SETUP SSOWAT
