@@ -33,8 +33,13 @@ ynh_script_progression --message="Validating installation parameters..." --weigh
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
 
+public_path=/home/yunohost.app/$app
+test ! -e "${public_path}" || ynh_die --message="$public_path already exists"
+
 # Register (book) web path
 ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
+
+ynh_app_setting_set --app=$app --key=public_path --value=$public_path
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
@@ -104,8 +109,6 @@ ynh_script_progression --message="Installing Lychee with Composer..." --weight=1
 # Install composer
 ynh_install_composer
 
-#ynh_composer_exec --phpversion="$phpversion" --workdir="$final_path" --commands="update --lock"
-
 #=================================================
 # BUILDING
 #=================================================
@@ -141,8 +144,11 @@ ynh_store_file_checksum "$final_path/.env"
 # CREATE DIRECTORIES
 #=================================================
 
-mkdir -p /home/yunohost.$app/uploads
-mkdir -p /home/yunohost.$app/uploads/{big,medium,small,thumb,import,raw}
+mkdir -p $public_path/uploads
+mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb,raw}
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config "public_path"
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
@@ -150,8 +156,8 @@ mkdir -p /home/yunohost.$app/uploads/{big,medium,small,thumb,import,raw}
 
 # Set permissions to app files
 chown -R $app: $final_path
-chown -R $app: /home/yunohost.$app
-chmod -R 755 /home/yunohost.$app
+chown -R $app: $public_path
+chmod -R 755 $public_path
 
 #=================================================
 # SETUP SSOWAT
