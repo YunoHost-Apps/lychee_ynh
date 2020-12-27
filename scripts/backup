@@ -38,7 +38,7 @@ ynh_backup --src_path="$final_path"
 # BACKUP MEDIA FOLDER
 #=================================================
 
-ynh_backup --src_path="/home/yunohost.$app" --is_big
+ynh_backup --src_path="/home/yunohost.app/$app" --is_big
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
