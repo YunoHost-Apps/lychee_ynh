@@ -128,7 +128,7 @@ ynh_script_progression --message="Installing Composer..." --weight=10
 
 # Install Composer
 ynh_install_composer
-ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
+#ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
 pushd "$final_path"
 	#php$phpversion artisan key:generate -n
