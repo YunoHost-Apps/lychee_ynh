@@ -94,7 +94,7 @@ then
 	tmpdir="$(mktemp -d)"
 
 	# Backup the config file in the temp dir
-	cp -a "$final_path/dist/user.css" "$tmpdir/user.css"
+	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
 
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
@@ -103,13 +103,10 @@ then
 	ynh_setup_source --dest_dir="$final_path"
 
 	# Copy the admin saved settings from tmp directory to final path	
-	cp -a "$tmpdiruser.css" "$final_path/config/dist/user.css"
+	cp -a "$tmpdiruser.css" "$final_path/public/dist/user.css"
 
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
-
-	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
 
 	ynh_install_composer --workdir="$final_path" --install_args="--prefer-source --no-dev"
 
