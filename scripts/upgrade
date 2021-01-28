@@ -108,11 +108,11 @@ then
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
 
-	ynh_install_composer --workdir="$final_path" --install_args="--no-dev"
+	# ynh_install_composer --workdir="$final_path" --install_args="--no-dev"
 
-	pushd $final_path
-		php$phpversion artisan migrate #-n --force
-	popd
+	# pushd $final_path
+	# 	php$phpversion artisan migrate #-n --force
+	# popd
 fi
 
 #=================================================
@@ -145,6 +145,25 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
+
+#=================================================
+# INSTALL AND INITIALIZE COMPOSER
+#=================================================
+ynh_script_progression --message="Installing Composer..." --weight=10
+
+# Install Composer
+ynh_install_composer
+
+ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
+
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Upgrading source files..." --weight=4
+
+( cd $final_path && php$phpversion artisan migrate -n --force )
+( cd $final_path && php$phpversion artisan config:clear -n )
+( cd $final_path && php$phpversion artisan config:cache -n )
+fi
 
 #=================================================
 # BUILDING
