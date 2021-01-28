@@ -103,7 +103,7 @@ then
 	ynh_setup_source --dest_dir="$final_path"
 
 	# Copy the admin saved settings from tmp directory to final path	
-	cp -a "$tmpdiruser.css" "$final_path/public/dist/user.css"
+	cp -a "$tmpdir/user.css" "$final_path/public/dist/user.css"
 
 	# Remove the tmp directory securely
 	ynh_secure_remove --file="$tmpdir"
