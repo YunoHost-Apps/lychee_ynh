@@ -117,10 +117,7 @@ ynh_script_progression --message="Installing Composer..." --weight=10
 
 ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
 
-cd $final_path && php$phpversion artisan key:generate -n --force --env
 cd $final_path && php$phpversion artisan migrate -n --force
-cd $final_path && php$phpversion artisan config:clear -n
-cd $final_path && php$phpversion artisan config:cache -n
 
 ynh_backup_if_checksum_is_different --file="$final_path/.env"
 # Recalculate and store the checksum of the file for the next upgrade.
