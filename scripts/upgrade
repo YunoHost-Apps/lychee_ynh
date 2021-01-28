@@ -159,14 +159,15 @@ ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
-
-( cd $final_path && php$phpversion artisan migrate -n --force )
-( cd $final_path && php$phpversion artisan config:clear -n )
-( cd $final_path && php$phpversion artisan config:cache -n )
+	pushd $final_path
+		php artisan migrate -n #--force
+		#php$phpversion artisan config:clear -n
+		#php$phpversion artisan config:cache -n
+	popd
 fi
 
 #=================================================
-# BUILDING
+# SETUP APPLICATION CONFIG
 #=================================================
 ynh_script_progression --message="Building..."
 
