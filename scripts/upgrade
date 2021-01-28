@@ -136,7 +136,7 @@ ynh_install_composer
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
-pushd "$final_path"
+pushd $final_path
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
