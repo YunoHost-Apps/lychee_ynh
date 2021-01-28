@@ -78,8 +78,39 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
 
+
+	# Create a temporary directory
+	tmpdir="$(mktemp -d)"
+
+	# Backup the config file in the temp dir
+	cp -a "$final_path/dist/user.css" "$tmpdir/user.css"
+	cp -a "$final_path/uploads" "$tmpdir/uploads"
+
+	# Remove the app directory securely
+	ynh_secure_remove --file="$final_path"
+
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path"
+
+	# Copy the admin saved settings from tmp directory to final path	
+	cp -a "$tmpdiruser.css" "$final_path/config/dist/user.css"
+	cp -a "$tmpdir/uploads" "$final_path/uploads"  
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
+
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$final_path"
+
+	ynh_install_composer --workdir="$final_path" --install_args="--prefer-source --no-dev"
+
+	pushd $final_path
+		php$phpversion artisan migrate -n --force
+	popd
+
+	ynh_backup_if_checksum_is_different --file="$final_path/.env"
+	# Recalculate and store the checksum of the file for the next upgrade.
+	ynh_store_file_checksum --file="$final_path/.env"
 fi
 
 #=================================================
@@ -105,25 +136,6 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..."
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config --package="$extra_php_dependencies"
-
-#=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# INSTALL AND INITIALIZE COMPOSER
-#=================================================
-ynh_script_progression --message="Installing Composer..." --weight=10
-
-# Install Composer
-
-ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
-
-pushd $final_path
-	php$phpversion artisan migrate #-n --force
-popd
-
-ynh_backup_if_checksum_is_different --file="$final_path/.env"
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$final_path/.env"
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
