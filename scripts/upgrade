@@ -141,6 +141,14 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
 ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 
 #=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Installing Composer..." --weight=1
+
+# Upgrade composer itself
+ynh_install_composer --phpversion=${phpversion} --workdir=$final_path --install_args="--prefer-source --no-dev"
+
+#=================================================
 # SETUP APPLICATION CONFIG
 #=================================================
 ynh_script_progression --message="Building..."
@@ -158,14 +166,6 @@ ynh_replace_string --match_string="__PUBLICPATH__" --replace_string="$public_pat
 ynh_store_file_checksum --file="$final_path/.env"
 
 #=================================================
-# PHP-FPM CONFIGURATION
-#=================================================
-ynh_script_progression --message="Installing Composer..." --weight=1
-
-# Upgrade composer itself
-ynh_install_composer --phpversion=${phpversion} --workdir=$final_path --install_args="--prefer-source --no-dev"
-
-#=================================================
 # INSTALL AND INITIALIZE COMPOSER
 #=================================================
 
@@ -173,9 +173,8 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading Lychee source files..." --weight=4
 	pushd $final_path
-		php$phpversion artisan migrate --no-interaction
-		#php$phpversion artisan config:clear --no-interaction
-		#php$phpversion artisan config:cache --no-interaction
+		php$phpversion artisan key:generate --no-interaction --force
+		php$phpversion artisan migrate --no-interaction --force
 	popd
 fi
 
