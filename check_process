@@ -16,6 +16,7 @@
 		setup_private=1
 		setup_public=1
 		upgrade=1
+		upgrade=1  from_commit=2a2fd5b9a9e81ff8e157cf1747418fd11f4211a2
 		backup_restore=1
 		multi_instance=1
 		port_already_use=0
@@ -24,7 +25,7 @@
 Email=
 Notification=none
 ;;; Upgrade options
-	; commit=CommitHash
-		name=Name and date of the commit.
+	; commit=2a2fd5b9a9e81ff8e157cf1747418fd11f4211a2
+		name= Fix linter (#13) 11 Dec 2020
 		manifest_arg=domain=DOMAIN&path=PATH&is_public=1&
 

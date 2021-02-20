@@ -134,13 +134,6 @@ popd
 cp ../conf/user.css.example $final_path/public/dist/user.css
 
 #=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$final_path/.env"
-
-#=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
