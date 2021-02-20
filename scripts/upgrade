@@ -68,6 +68,13 @@ if [ ! -d "$public_path/uploads" ]; then
         mkdir -p $public_path/uploads
 fi
 
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
+
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
@@ -147,7 +154,7 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 ynh_script_progression --message="Installing Composer..." --weight=1
 
 # Upgrade composer itself
-ynh_install_composer --phpversion=${phpversion} --workdir=$final_path --install_args="--prefer-source --no-dev"
+ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
 
 #=================================================
 # SETUP APPLICATION CONFIG
@@ -155,13 +162,9 @@ ynh_install_composer --phpversion=${phpversion} --workdir=$final_path --install_
 ynh_script_progression --message="Building..."
 
 ynh_backup_if_checksum_is_different --file="$final_path/.env"
-# Setup application config
-cp ../conf/.env.example $final_path/.env
 
-ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__PUBLICPATH__" --replace_string="$public_path" --target_file="$final_path/.env"
+# Setup application config
+ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
 
 # Recalculate and store the checksum of the file for the next upgrade.
 ynh_store_file_checksum --file="$final_path/.env"
