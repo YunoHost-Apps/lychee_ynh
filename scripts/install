@@ -79,8 +79,8 @@ ynh_setup_source --dest_dir=$final_path
 if [ -z "/home/yunohost.app/$app" ]; then
 	public_path=/home/yunohost.app/$app
 	ynh_app_setting_set --app=$app --key=public_path --value=$public_path
-	mkdir -p ${public_path}/uploads
-	mkdir -p ${public_path}/uploads/{big,import,medium,raw,small,thumb}
+	mkdir -p $public_path/uploads
+	mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb}
 else
 	ynh_die --message="This path already contains a folder"
 fi
@@ -119,12 +119,8 @@ ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_ar
 ynh_script_progression --message="Building..."
 
 # Setup application config
-cp ../conf/.env.example $final_path/.env
-
-ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__FINALPATH__" --replace_string="$final_path" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__PUBLICPATH__" --replace_string="$public_path" --target_file="$final_path/.env"
+ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
+ynh_store_file_checksum "$final_path/.env"
 
 # Setup application config
 pushd $final_path
