@@ -87,7 +87,6 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
 
-
 	# Create a temporary directory
 	tmpdir="$(mktemp -d)"
 
