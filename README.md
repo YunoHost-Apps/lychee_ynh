@@ -39,8 +39,8 @@ How to configure this app: From an admin panel.
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
 
 ## Limitations
 
