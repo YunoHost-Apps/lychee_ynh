@@ -28,7 +28,7 @@ How to configure this app: From an admin panel.
 ## Documentation
 
  * Official documentation: https://lycheeorg.github.io/docs/
- * YunoHost documentation: https://yunohost.org/#/app_lychee
+ * YunoHost documentation: https://yunohost.org/en/app_lychee
 
 ## YunoHost specific features
 

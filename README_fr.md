@@ -28,7 +28,7 @@ Comment configurer cette application : via le panneau d'administration.
 ## Documentation
 
  * Documentation officielle : https://lycheeorg.github.io/docs/
- * Documentation YunoHost : https://yunohost.org/#/app_lychee_fr
+ * Documentation YunoHost : https://yunohost.org/fr/app_lychee
 
 ## Caractéristiques spécifiques YunoHost
 
