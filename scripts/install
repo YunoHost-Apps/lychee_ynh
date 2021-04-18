@@ -111,7 +111,9 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
 # Install composer
-ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--no-dev"
+#ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--no-dev"
+
+ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # BUILDING
