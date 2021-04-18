@@ -147,7 +147,8 @@ ynh_script_progression --message="Installing Composer..." --weight=1
 #ynh_secure_remove --file="$final_path/composer.lock"
 
 # Upgrade composer itself
-ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
+#ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
+ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # SETUP APPLICATION CONFIG
@@ -165,7 +166,6 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading Lychee source files..." --weight=4
 	pushd $final_path
-		composer install --no-dev
 		php$phpversion artisan key:generate --no-interaction --force
 		php$phpversion artisan migrate --no-interaction --force
 	popd
