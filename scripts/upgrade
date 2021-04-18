@@ -182,7 +182,7 @@ fi
 chown -R $app: $final_path
 chmod 750 $final_path/bootstrap/cache
 chown -R $app: $public_path
-chmod 750 $public_path
+chmod 755 $public_path
 
 #=================================================
 # RELOAD NGINX
