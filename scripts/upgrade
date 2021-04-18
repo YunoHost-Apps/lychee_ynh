@@ -95,6 +95,9 @@ then
 	# Backup the config file in the temp dir
 	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
 
+	# Move media to new path
+	cp -a "$final_path/public/uploads/*" "$public_path/uploads/"
+
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
 
