@@ -23,6 +23,7 @@ public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+version=ynh_app_upstream_version
 
 #=================================================
 # CHECK VERSION
