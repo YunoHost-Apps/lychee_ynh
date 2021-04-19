@@ -92,11 +92,9 @@ then
 
 	if [ "$version" -lt "4.3" ]; then
 		mkdir -p $public_path/uploads
+		# Move media to new path
 		cp -a "$final_path/public/uploads" "$public_path/uploads"
 	fi
-
-	# Move media to new path
-	cp -a "$final_path/public/uploads" "$public_path/uploads"
 
 	# Remove the app directory securely
 	ynh_secure_remove --file="$final_path"
