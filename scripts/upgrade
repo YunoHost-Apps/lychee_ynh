@@ -55,11 +55,6 @@ if [ -z "$public_path" ]; then
         ynh_app_setting_set --app=$app --key=public_path --value=$public_path
 fi
 
-if [ ! -d "$public_path/uploads" ]; then
-        mkdir -p $public_path/uploads
-		mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb}
-fi
-
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -94,6 +89,11 @@ then
 
 	# Backup the config file in the temp dir
 	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
+
+	if [ "$version" -lt "4.3" ]; then
+		mkdir -p $public_path/uploads
+		cp -a "$final_path/public/uploads" "$public_path/uploads"
+	fi
 
 	# Move media to new path
 	cp -a "$final_path/public/uploads" "$public_path/uploads"
@@ -147,16 +147,12 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 #=================================================
 ynh_script_progression --message="Installing Composer..." --weight=1
 
-#ynh_secure_remove --file="$final_path/composer.lock"
-
-# Upgrade composer itself
-#ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
-ynh_install_composer --install_args="--ignore-platform-reqs"
+ynh_install_composer --workdir="$final_path" --install_args="--ignore-platform-reqs"
 
 #=================================================
 # SETUP APPLICATION CONFIG
 #=================================================
-ynh_script_progression --message="Building..."
+ynh_script_progression --message="Setip Lychee config..."
 
 # Setup application config
 ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
