@@ -62,6 +62,14 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..." --weight=2
+
+# Create a system user
+ynh_system_user_create --username=$app
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=3
@@ -89,14 +97,6 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 ynh_add_nginx_config "public_path"
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..." --weight=2
-
-# Create a system user
-ynh_system_user_create --username=$app
-
-#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
@@ -110,8 +110,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
-# Install composer
-ynh_install_composer --phpversion=$phpversion --workdir=$final_path --install_args="--prefer-source --no-dev"
+ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # BUILDING
@@ -133,13 +132,6 @@ popd
 cp ../conf/user.css.example $final_path/public/dist/user.css
 
 #=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$final_path/.env"
-
-#=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
@@ -147,7 +139,7 @@ ynh_store_file_checksum "$final_path/.env"
 chown -R $app: $final_path
 chmod 750 $final_path/bootstrap/cache
 chown -R $app: $public_path
-chmod 750 $public_path
+chmod 755 $public_path
 
 #=================================================
 # SETUP SSOWAT
