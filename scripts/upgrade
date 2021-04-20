@@ -151,7 +151,7 @@ ynh_install_composer --workdir="$final_path" --install_args="--ignore-platform-r
 #=================================================
 # SETUP APPLICATION CONFIG
 #=================================================
-ynh_script_progression --message="Setip Lychee config..."
+ynh_script_progression --message="Setting Lychee config..."
 
 # Setup application config
 ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"

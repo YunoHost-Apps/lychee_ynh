@@ -5,7 +5,7 @@
 #=================================================
 
 YNH_PHP_VERSION=7.4
-
+YNH_COMPOSER_VERSION=2.0.8
 extra_php_dependencies="php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-imagick php${YNH_PHP_VERSION}-bcmath php${YNH_PHP_VERSION}-exif php${YNH_PHP_VERSION}-mbstring php${YNH_PHP_VERSION}-gd php${YNH_PHP_VERSION}-mysqli php${YNH_PHP_VERSION}-json php${YNH_PHP_VERSION}-zip"
 
 # needed for raw upload and video playback
@@ -15,7 +15,7 @@ pkg_dependencies="ufraw-batch ffmpeg"
 # EXPERIMENTAL HELPERS
 #=================================================
 
-readonly YNH_DEFAULT_COMPOSER_VERSION=2.0.8
+readonly YNH_DEFAULT_COMPOSER_VERSION=1.10.17
 # Declare the actual composer version to use.
 # A packager willing to use another version of composer can override the variable into its _common.sh.
 YNH_COMPOSER_VERSION=${YNH_COMPOSER_VERSION:-$YNH_DEFAULT_COMPOSER_VERSION}
