@@ -85,12 +85,6 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
 
-	# Create a temporary directory
-	tmpdir="$(mktemp -d)"
-
-	# Backup the config file in the temp dir
-	cp -a "$final_path/public/dist/user.css" "$tmpdir/user.css"
-
 	if [ "$version" -lt "4.3" ]; then
 		mkdir -p $public_path/uploads
 		# Move media to new path
@@ -101,13 +95,7 @@ then
 	ynh_secure_remove --file="$final_path"
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path"
-
-	# Copy the admin saved settings from tmp directory to final path	
-	cp -a "$tmpdir/user.css" "$final_path/public/dist/user.css"
-
-	# Remove the tmp directory securely
-	ynh_secure_remove --file="$tmpdir"
+	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/public/dist/user.css"
 fi
 
 #=================================================
