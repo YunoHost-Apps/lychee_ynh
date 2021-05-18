@@ -94,7 +94,7 @@ mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb}
 ynh_script_progression --message="Configuring NGINX web server..." --weight=1
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config "public_path"
+ynh_add_nginx_config #"public_path"
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -110,7 +110,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
-ynh_install_composer --install_args="--ignore-platform-reqs"
+ynh_install_composer #--install_args="--ignore-platform-reqs"
 
 #=================================================
 # BUILDING
