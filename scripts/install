@@ -129,15 +129,19 @@ pushd $final_path
 popd
 
 # Setup custom user.css file
-cp ../conf/user.css.example $final_path/public/dist/user.css
+ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
 # Set permissions to app files
-chown -R $app: $final_path
-chmod 750 $final_path/bootstrap/cache
+
+chmod 750 "$final_path"
+chmod 750 "$final_path/bootstrap/cache"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 chown -R $app: $public_path
 chmod 755 $public_path
 

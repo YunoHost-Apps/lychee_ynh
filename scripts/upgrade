@@ -28,7 +28,6 @@ version=ynh_app_upstream_version
 #=================================================
 # CHECK VERSION
 #=================================================
-ynh_script_progression --message="Checking version..." --weight=1
 
 upgrade_type=$(ynh_check_app_version_changed)
 
@@ -78,6 +77,14 @@ ynh_clean_setup () {
 ynh_abort_if_errors
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app --home_dir="$final_path"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -91,11 +98,8 @@ then
 		cp -a "$final_path/public/uploads" "$public_path/uploads"
 	fi
 
-	# Remove the app directory securely
-	ynh_secure_remove --file="$final_path"
-
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/public/dist/user.css"
+	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/public/dist/user.css $final_path/.env"
 fi
 
 #=================================================
@@ -114,14 +118,6 @@ ynh_script_progression --message="Upgrading dependencies..." --weight=6
 ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
-
-#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
@@ -134,15 +130,15 @@ ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencie
 #=================================================
 ynh_script_progression --message="Installing Composer..." --weight=1
 
-ynh_install_composer --workdir="$final_path" --install_args="--ignore-platform-reqs"
+ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # SETUP APPLICATION CONFIG
 #=================================================
-ynh_script_progression --message="Setting Lychee config..."
+# ynh_script_progression --message="Setting Lychee config..."
 
-# Setup application config
-ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
+# # Setup application config
+# ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
 
 #=================================================
 # INSTALL AND INITIALIZE COMPOSER
@@ -152,8 +148,8 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading Lychee source files..." --weight=4
 	pushd $final_path
-		php$phpversion artisan key:generate --no-interaction --force
-		php$phpversion artisan migrate --no-interaction --force
+		php$phpversion artisan key:generate -n --force
+		php$phpversion artisan migrate -n --force
 	popd
 fi
 
