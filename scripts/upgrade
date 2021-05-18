@@ -53,6 +53,7 @@ if [ -z "$public_path" ]; then
         public_path=/home/yunohost.app/$app
         mkdir -p $public_path
         ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+        cp -a "$final_path/public/uploads" "$public_path/uploads"
 fi
 
 # Cleaning legacy permissions
@@ -91,12 +92,6 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
-
-	if [ "$version" -lt "4.3" ]; then
-		mkdir -p $public_path/uploads
-		# Move media to new path
-		cp -a "$final_path/public/uploads" "$public_path/uploads"
-	fi
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir="$final_path" #--keep="$final_path/public/dist/user.css $final_path/.env"
