@@ -144,12 +144,18 @@ ynh_install_composer --install_args="--ignore-platform-reqs"
 #=================================================
 ynh_script_progression --message="Upgrading Lychee source files..." --weight=4
 
-pushd $final_path
-	php$phpversion artisan key:generate -n --force --env
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n
-	php$phpversion artisan config:cache -n
-popd
+# pushd $final_path
+# 	php$phpversion artisan key:generate -n --force --env
+# 	php$phpversion artisan migrate -n --force
+# 	php$phpversion artisan config:clear -n
+# 	php$phpversion artisan config:cache -n
+# popd
+
+ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
+
+( cd $final_path && php$phpversion artisan migrate -n --force )
+( cd $final_path && php$phpversion artisan config:clear -n )
+( cd $final_path && php$phpversion artisan config:cache -n )
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
