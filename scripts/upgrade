@@ -102,6 +102,10 @@ then
 	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/public/dist/user.css $final_path/.env"
 fi
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -157,9 +161,6 @@ fi
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
-# Set permissions to app files
-chown -R $app: $final_path
-chmod 750 $final_path/bootstrap/cache
 chown -R $app: $public_path
 chmod 755 $public_path
 
