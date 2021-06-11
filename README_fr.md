@@ -1,7 +1,7 @@
 # Lychee pour YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)  
-[![Installer Lychee avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=lychee)
+[![Installer Lychee avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
 *[Read this readme in english.](./README.md)* 
 
@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Vue d'ensemble
 Lychee est un outil de gestion de photos gratuit, qui fonctionne sur votre serveur ou votre espace Web. L'installation est une question de secondes. Téléchargez, gérez et partagez des photos comme à partir d'une application native. Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont stockées en toute sécurité.
 
-**Version incluse :** 4.0.8
+**Version incluse :** 4.3
 
 ## Captures d'écran
 
@@ -28,7 +28,7 @@ Comment configurer cette application : via le panneau d'administration.
 ## Documentation
 
  * Documentation officielle : https://lycheeorg.github.io/docs/
- * Documentation YunoHost : https://yunohost.org/#/app_lychee_fr
+ * Documentation YunoHost : https://yunohost.org/fr/app_lychee
 
 ## Caractéristiques spécifiques YunoHost
 
@@ -39,8 +39,8 @@ Comment configurer cette application : via le panneau d'administration.
 
 #### Architectures supportées
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
 
 ## Limitations
 

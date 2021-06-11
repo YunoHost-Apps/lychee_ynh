@@ -43,7 +43,13 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=is_public --value=$is_public
+
+#=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=3
+
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE A MYSQL DATABASE
@@ -56,30 +62,6 @@ ynh_app_setting_set --app=$app --key=db_name --value=$db_name
 ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression --message="Setting up source files..." --weight=3
-
-ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"
-
-#=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=2
-
-# Create a dedicated NGINX config
-ynh_add_nginx_config
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-#ynh_script_progression --message="Adding multimedia directories..." --weight=2
-
-#ynh_multimedia_build_main_dir
-
-#=================================================
 # CREATE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Configuring system user..." --weight=2
@@ -88,12 +70,39 @@ ynh_script_progression --message="Configuring system user..." --weight=2
 ynh_system_user_create --username=$app
 
 #=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --weight=3
+
+ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+# Download, check integrity, uncompress and patch the source from app.src
+ynh_setup_source --dest_dir=$final_path
+
+#=================================================
+# CREATE DIRECTORIES
+#=================================================
+
+public_path=/home/yunohost.app/$app
+ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+
+mkdir -p $public_path/uploads
+mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb}
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring NGINX web server..." --weight=1
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config #"public_path"
+
+#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --package="$extra_php_dependencies"
+ynh_add_fpm_config --usage=low --footprint=low --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -101,8 +110,7 @@ phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 #=================================================
 ynh_script_progression --message="Installing Lychee with Composer..." --weight=15
 
-# Install composer
-ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" --install_args="--prefer-source --no-dev"
+ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # BUILDING
@@ -110,53 +118,42 @@ ynh_install_composer --phpversion="${YNH_PHP_VERSION}" --workdir="$final_path" -
 ynh_script_progression --message="Building..."
 
 # Setup application config
-cp ../conf/.env.example $final_path/.env
+ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
 
-ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__DB_PASS__" --replace_string="$db_pwd" --target_file="$final_path/.env"
-ynh_replace_string --match_string="__APP__" --replace_string="$app" --target_file="$final_path/.env"
+# Setup application config
+pushd $final_path
+	php$phpversion artisan key:generate -n --force --env
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n
+	php$phpversion artisan config:cache -n
+popd
 
-# setup application config
-cd $final_path && php$phpversion artisan key:generate -n --force --env
-cd $final_path && php$phpversion artisan migrate -n --force
-cd $final_path && php$phpversion artisan config:clear -n
-cd $final_path && php$phpversion artisan config:cache -n
-
-#=================================================
-# STORE THE CONFIG FILE CHECKSUM
-#=================================================
-ynh_script_progression --message="Storing the config file checksum..."
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$final_path/.env"
-
-#=================================================
-# CREATE DIRECTORIES
-#=================================================
-
-#mkdir -p /home/yunohost.${app}/uploads
-#mkdir -p /home/yunohost.${app}/uploads/{big,medium,small,thumb,import}
+# Setup custom user.css file
+ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
 # Set permissions to app files
-chown -R $app: $final_path
-#chown -R $app: /home/yunohost.${app}
-#chmod -R 750 /home/yunohost.${app}
+
+chmod 750 "$final_path"
+chmod 750 "$final_path/bootstrap/cache"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
+chown -R $app: $public_path
+chmod 755 $public_path
 
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring SSOwat..." --weight=1
+ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary or protect it
 if [ $is_public -eq 1 ]
 then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
-	ynh_permission_update --permission "main" --add "visitors"
+	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 #=================================================

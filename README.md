@@ -1,7 +1,7 @@
 # Lychee for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)  
-[![Install Lychee with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=lychee)
+[![Install Lychee with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
@@ -11,7 +11,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 ## Overview
 Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely.
 
-**Shipped version:** 4.0.8
+**Shipped version:** 4.3
 
 ## Screenshots
 
@@ -28,7 +28,7 @@ How to configure this app: From an admin panel.
 ## Documentation
 
  * Official documentation: https://lycheeorg.github.io/docs/
- * YunoHost documentation: https://yunohost.org/#/app_lychee
+ * YunoHost documentation: https://yunohost.org/en/app_lychee
 
 ## YunoHost specific features
 
@@ -39,8 +39,8 @@ How to configure this app: From an admin panel.
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/lychee.svg)](https://ci-apps-arm.yunohost.org/ci/apps/lychee/)
 
 ## Limitations
 
