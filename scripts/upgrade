@@ -94,7 +94,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$final_path" --keep="$final_path/public/dist/user.css $final_path/.env"
+	ynh_setup_source --dest_dir="$final_path"
 fi
 
 chmod 750 "$final_path"
@@ -134,22 +134,17 @@ ynh_install_composer --install_args="--ignore-platform-reqs"
 #=================================================
 # SETUP APPLICATION CONFIG
 #=================================================
-# ynh_script_progression --message="Setting Lychee config..."
+ynh_script_progression --message="Setting $app config..."
 
 # Setup application config
-#ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
+ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
+
+ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
 #=================================================
 # INSTALL AND INITIALIZE COMPOSER
 #=================================================
-ynh_script_progression --message="Upgrading Lychee source files..." --weight=4
-
-# pushd $final_path
-# 	php$phpversion artisan key:generate -n --force --env
-# 	php$phpversion artisan migrate -n --force
-# 	php$phpversion artisan config:clear -n
-# 	php$phpversion artisan config:cache -n
-# popd
+ynh_script_progression --message="Upgrading $app source files..." --weight=4
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
@@ -161,8 +156,8 @@ ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
-chown -R $app:www-data $public_path
 chmod 755 $public_path
+chown -R $app:www-data $public_path
 
 #=================================================
 # RELOAD NGINX
@@ -175,4 +170,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of Lychee completed" --last
+ynh_script_progression --message="Upgrade of $app completed" --last

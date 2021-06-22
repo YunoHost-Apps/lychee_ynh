@@ -27,7 +27,7 @@ db_user=$db_name
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
-ynh_script_progression --message="Removing Lychee main directory..." --weight=3
+ynh_script_progression --message="Removing app main directory..." --weight=3
 
 # Remove the app directory securely
 ynh_secure_remove --file="$final_path"
@@ -78,4 +78,4 @@ ynh_system_user_delete --username=$app
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Removal of Lychee completed" --last
+ynh_script_progression --message="Removal of $app completed" --last
