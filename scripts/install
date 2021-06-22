@@ -142,7 +142,7 @@ chmod 750 "$final_path/bootstrap/cache"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
-chown -R $app: $public_path
+chown -R $app:www-data $public_path
 chmod 755 $public_path
 
 #=================================================
