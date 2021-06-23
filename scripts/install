@@ -129,11 +129,10 @@ ynh_script_progression --message="Building..."
 
 # Setup application config
 ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
-
- ynh_composer_exec --workdir=$final_path --commands="require php-ffmpeg/php-ffmpeg"
  
 # Setup application config
 pushd $final_path
+	composer require php-ffmpeg/php-ffmpeg
 	php$phpversion artisan key:generate -n --force --env
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
