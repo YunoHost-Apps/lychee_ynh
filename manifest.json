@@ -6,8 +6,16 @@
         "en": "Photo-management-system to manage and share photos.",
         "fr": "Système de gestion de photos pour gérer et partager des photos."
     },
-    "version": "4.3~ynh1",
+    "version": "4.3~ynh2",
     "url": "https://lycheeorg.github.io/",
+    "upstream": {
+        "license": "MIT",
+        "website": "https://lycheeorg.github.io/",
+        "demo": "https://lycheeorg.github.io/demo/",
+        "admindoc": "https://lycheeorg.github.io/docs/",
+        "userdoc": "https://yunohost.org/en/app_lychee",
+        "code": "https://github.com/LycheeOrg/Lychee"
+    },
     "license": "MIT",
     "maintainer": {
         "name": "eric_G",
