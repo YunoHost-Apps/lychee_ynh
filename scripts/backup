@@ -19,7 +19,7 @@ ynh_abort_if_errors
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info --message="Backing up Lychee..."
+ynh_print_info --message="Loading installation settings..."
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -71,4 +71,4 @@ ynh_mysql_dump_db --database="$db_name" > db.sql
 # END OF SCRIPT
 #=================================================
 
-ynh_print_info --message="Backup script completed for Lychee. (YunoHost will then actually copy those files to the archive)."
+ynh_print_info --message="Backup script completed for $app. (YunoHost will then actually copy those files to the archive)."

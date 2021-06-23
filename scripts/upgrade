@@ -98,6 +98,7 @@ then
 fi
 
 chmod 750 "$final_path"
+chmod 750 "$final_path/bootstrap/cache"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
