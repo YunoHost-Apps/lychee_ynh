@@ -49,40 +49,36 @@ test ! -d $final_path \
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 #=================================================
-# RESTORE THE APP MAIN DIR
-#=================================================
-ynh_script_progression --message="Restoring Lychee main directory..." --weight=2
-
-ynh_restore_file --origin_path="$final_path"
-
-#=================================================
 # RECREATE THE DEDICATED USER
 #=================================================
 ynh_script_progression --message="Recreating the dedicated system user..." --weight=1
 
 # Create the dedicated user (if not existing)
-ynh_system_user_create --username=$app
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
-# RESTORE DATA
+# RESTORE THE APP MAIN DIR
 #=================================================
-ynh_script_progression --message="Restoring Lychee data..."
+ynh_script_progression --message="Restoring the app main directory..." --weight=2
 
-# Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
-ynh_restore_file --origin_path="$public_path" --not_mandatory
+ynh_restore_file --origin_path="$final_path"
 
-#=================================================
-# RESTORE USER RIGHTS
-#=================================================
-
-# Set permissions to app files
 chmod 750 "$final_path"
 chmod 750 "$final_path/bootstrap/cache"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
-chown -R $app:www-data $public_path
-chmod 755 $public_path
+#=================================================
+# RESTORE DATA
+#=================================================
+ynh_script_progression --message="Restoring the data directory..."
+
+# Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
+ynh_restore_file --origin_path="$public_path" --not_mandatory
+
+chmod 755 "$public_path"
+chmod -R o-rwx "$public_path"
+chown -R $app:www-data "$public_path"
 
 #=================================================
 # REINSTALL DEPENDENCIES
@@ -126,4 +122,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Restoration completed for Lychee" --last
+ynh_script_progression --message="Restoration completed for $app" --last
