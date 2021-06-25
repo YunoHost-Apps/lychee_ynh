@@ -144,6 +144,11 @@ ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env
 
 ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
+ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\
+        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\
+        'ffprobe.binaries' => '/usr/bin/ffprobe',\
+));" --target_file="$final_path/app/Actions/Photo/Extensions/VideoEditing.php"
+
 #=================================================
 # INSTALL AND INITIALIZE COMPOSER
 #=================================================
@@ -151,9 +156,11 @@ ynh_script_progression --message="Upgrading $app source files..." --weight=4
 
 ynh_exec_warn_less ynh_composer_exec --commands=\"dump-autoload\"
 
-( cd $final_path && php$phpversion artisan migrate -n --force )
-( cd $final_path && php$phpversion artisan config:clear -n )
-( cd $final_path && php$phpversion artisan config:cache -n )
+pushd $final_path
+	php$phpversion artisan migrate -n --force
+	php$phpversion artisan config:clear -n
+	php$phpversion artisan config:cache -n
+popd
 
 #=================================================
 # RELOAD NGINX
