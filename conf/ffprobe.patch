@@ -14,6 +14,7 @@ index 1a96769..5842606 100644
                 /** @var Video */
                 $video = $ffmpeg->open(Storage::path('big/' . $photo->url));
                 if (!($tmp = tempnam(sys_get_temp_dir(), 'lychee')) ||
+
 diff --git a/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php b/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php
 index 9ececfe..106eadd 100644
 --- a/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php
@@ -26,4 +27,4 @@ index 9ececfe..106eadd 100644
 +    protected $toolPath = '/usr/bin/ffprobe';
 
      /**
-      * @var string-e \n
+      * @var string-e
