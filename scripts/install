@@ -146,11 +146,7 @@ ynh_add_config --template="../conf/user.css.example" --destination="$final_path/
 # PATCHS
 #=================================================
 
-(cd $final_path/vendor/lychee-org/php-exif/lib/PHPExif/Adapter/FFprobe.php/
-patch -p1 < ../sources/app-00-add-ffprobe-path.patch)
-
-(cd $final_path/app/Actions/Photo/Extensions/VideoEditing.php/
-patch -p1 < ../sources/app-01-add-ffprobe-path.patch)
+git apply ../conf/ffprobe.patch
 
 #=================================================
 # SETUP SSOWAT
