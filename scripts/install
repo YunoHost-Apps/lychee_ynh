@@ -136,11 +136,15 @@ pushd $final_path
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
-	patch < "../conf/ffprobe.patch"
+	patch < "$YNH_CWD/../conf/ffprobe.patch"
 popd
 
 # Setup custom user.css file
 ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
+
+# pushd $final_path
+# 	patch -p1 < $YNH_CWD/../conf/conf/ffprobe.patch
+# popd
 
 #=================================================
 # SETUP SSOWAT
