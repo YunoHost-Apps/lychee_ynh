@@ -146,7 +146,7 @@ ynh_add_config --template="../conf/user.css.example" --destination="$final_path/
 # PATCHS
 #=================================================
 
-git apply ../conf/ffprobe.patch
+patch --strip=1 < ../conf/ffprobe.patch
 
 #=================================================
 # SETUP SSOWAT
