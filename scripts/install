@@ -142,9 +142,9 @@ popd
 # Setup custom user.css file
 ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
-ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\\n
-        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\\n
-        'ffprobe.binaries' => '/usr/bin/ffprobe',\\n
+ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\
+        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\
+        'ffprobe.binaries' => '/usr/bin/ffprobe',\
 ));" --target_file=$final_path//app/Actions/Photo/Extensions/VideoEditing.php
 
 #=================================================
