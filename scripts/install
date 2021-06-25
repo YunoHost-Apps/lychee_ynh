@@ -137,7 +137,7 @@ pushd $final_path
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
 	patch -p1 < "$YNH_CWD/../conf/ffprobe.patch"
-	#patch -p1 < "$YNH_CWD/../conf/ffmpeg.patch"
+	patch -p1 < "$YNH_CWD/../conf/ffmpeg.patch"
 popd
 
 # Setup custom user.css file
