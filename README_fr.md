@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Système de gestion de photos pour gérer et partager des photos.
 
-**Version incluse :** 4.3~ynh2
+**Version incluse :** 4.3.4~ynh1
 
 **Démo :** https://lycheeorg.github.io/demo/
 
