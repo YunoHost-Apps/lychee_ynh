@@ -12,6 +12,7 @@
 		setup_public=1
 		upgrade=1
 		upgrade=1  from_commit=2a2fd5b9a9e81ff8e157cf1747418fd11f4211a2
+		upgrade=1  from_commit=1fa062d50aaa810deeba6426405fbe2e2671492a
 		backup_restore=1
 		multi_instance=1
 		change_url=1
@@ -21,5 +22,6 @@ Notification=none
 ;;; Upgrade options
 	; commit=2a2fd5b9a9e81ff8e157cf1747418fd11f4211a2
 		name= Fix linter (#13) 11 Dec 2020
+	; commit=1fa062d50aaa810deeba6426405fbe2e2671492a
+		name= Merge branch 'testing' (#26)
 		manifest_arg=domain=DOMAIN&path=PATH&is_public=1&
-
