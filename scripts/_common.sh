@@ -14,6 +14,10 @@ extra_php_dependencies="php${YNH_PHP_VERSION}-xml php${YNH_PHP_VERSION}-imagick 
 # needed for raw upload and video playback
 pkg_dependencies="ufraw-batch ffmpeg"
 
+if ! (apt-cache -q=0 show ufraw-batch |& grep ': No packages found' &>/dev/null); then
+	pkg_dependencies="$pkg_dependencies ufraw-batch"
+fi
+
 #=================================================
 # PERSONAL HELPERS
 #=================================================
