@@ -156,7 +156,7 @@ ynh_script_progression --message="Upgrading $app source files..." --weight=4
 ynh_exec_warn_less ynh_composer_exec --commands=dump-autoload
 
 pushd $final_path
-	php$phpversion artisan key:generate
+	#php$phpversion artisan key:generate
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
