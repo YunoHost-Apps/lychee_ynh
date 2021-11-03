@@ -15,7 +15,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Photo-management-system to manage and share photos.
+Photo-management-system to manage and share photos
 
 **Shipped version:** 4.3.4~ynh1
 
@@ -28,7 +28,6 @@ Photo-management-system to manage and share photos.
 ## Documentation and resources
 
 * Official app website: https://lycheeorg.github.io/
-* Official user documentation: https://yunohost.org/en/app_lychee
 * Official admin documentation: https://lycheeorg.github.io/docs/
 * Upstream app code repository: https://github.com/LycheeOrg/Lychee
 * YunoHost documentation for this app: https://yunohost.org/app_lychee
