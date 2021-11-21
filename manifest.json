@@ -3,8 +3,8 @@
     "id": "lychee",
     "packaging_format": 1,
     "description": {
-        "en": "Photo-management-system to manage and share photos.",
-        "fr": "Système de gestion de photos pour gérer et partager des photos."
+        "en": "Photo-management-system to manage and share photos",
+        "fr": "Système de gestion de photos pour gérer et partager des photos"
     },
     "version": "4.3.4~ynh1",
     "url": "https://lycheeorg.github.io/",
@@ -13,7 +13,6 @@
         "website": "https://lycheeorg.github.io/",
         "demo": "https://lycheeorg.github.io/demo/",
         "admindoc": "https://lycheeorg.github.io/docs/",
-        "userdoc": "https://yunohost.org/en/app_lychee",
         "code": "https://github.com/LycheeOrg/Lychee"
     },
     "license": "MIT",
@@ -22,7 +21,7 @@
         "email": ""
     },
     "requirements": {
-        "yunohost": ">= 4.2.4"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
@@ -34,8 +33,7 @@
         "install" : [
             {
             "name": "domain",
-            "type": "domain",
-                "example": "example.com"
+            "type": "domain"
             },
             {
             "name": "path",
