@@ -11,9 +11,9 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Système de gestion de photos pour gérer et partager des photos.
+Système de gestion de photos pour gérer et partager des photos
 
-**Version incluse :** 4.3.4~ynh1
+**Version incluse :** 4.4~ynh1
 
 **Démo :** https://lycheeorg.github.io/demo/
 
@@ -24,7 +24,6 @@ Système de gestion de photos pour gérer et partager des photos.
 ## Documentations et ressources
 
 * Site officiel de l'app : https://lycheeorg.github.io/
-* Documentation officielle utilisateur : https://yunohost.org/en/app_lychee
 * Documentation officielle de l'admin : https://lycheeorg.github.io/docs/
 * Dépôt de code officiel de l'app : https://github.com/LycheeOrg/Lychee
 * Documentation YunoHost pour cette app : https://yunohost.org/app_lychee
