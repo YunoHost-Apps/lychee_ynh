@@ -160,6 +160,7 @@ pushd $final_path
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
+	php$phpversion artisan view:clear
 popd
 
 chmod 750 "$final_path"
