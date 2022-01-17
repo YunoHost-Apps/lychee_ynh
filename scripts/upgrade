@@ -22,6 +22,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+app_key=$(ynh_app_setting_get --app=$app --key=app_key)
 phpversion=$YNH_PHP_VERSION
 
 #=================================================
@@ -62,13 +63,19 @@ if [ -z "$final_path" ]; then
 fi
 
 # If new datadir doesn't exist, create it
-if [ -z "/home/yunohost.app/$app" ]; then
+if [ -z "/home/yunohost.app/$app" ] || [ -z "$datadir" ]; then
         datadir=/home/yunohost.app/$app
         mkdir -p $datadir
         chmod 755 $datadir
 		chown -R $app:www-data $datadir
         ynh_app_setting_set --app=$app --key=datadir --value=$datadir
         cp -a "$final_path/public/uploads" "$datadir/uploads"
+fi
+
+# If app_key doesn't exist, create it
+if [ -z "$app_key" ]; then
+	app_key=$(ynh_string_random --length=32)
+	ynh_app_setting_set --app=$app --key=app_key --value=$app_key
 fi
 
 # Cleaning legacy permissions
@@ -102,6 +109,16 @@ chmod 750 "$final_path"
 chmod 750 "$final_path/bootstrap/cache"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
+
+#=================================================
+# UPDATE A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Updating the environment file..." --weight=1
+
+ynh_add_config --template=".env.example" --destination="$final_path/.env"
+
+chmod 660 "$final_path/.env"
+chown $app:www-data "$final_path/.env"
 
 #=================================================
 # NGINX CONFIGURATION
