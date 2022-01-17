@@ -61,7 +61,16 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
-# If new datadir doesn't exist, create it
+# If datadir doesn't exist, create it
+if [ -z "$datadir" ]; then
+	datadir=/home/yunohost.app/$app
+	mkdir -p $datadir
+    chmod 755 $datadir
+	chown -R $app:www-data $datadir
+	ynh_app_setting_set --app=$app --key=datadir --value=$datadir
+fi
+
+# If new "/home/yunohost.app/$app" doesn't exist, create it
 if [ -z "/home/yunohost.app/$app" ]; then
         datadir=/home/yunohost.app/$app
         mkdir -p $datadir
