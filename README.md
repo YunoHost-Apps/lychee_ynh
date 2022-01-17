@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Photo-management-system to manage and share photos
 
-**Shipped version:** 4.4~ynh1
+**Shipped version:** 4.4~ynh2
 
 **Demo:** https://lycheeorg.github.io/demo/
 
