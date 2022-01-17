@@ -19,7 +19,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 phpversion=$YNH_PHP_VERSION
@@ -64,14 +64,23 @@ if [ -z "$final_path" ]; then
 	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 fi
 
-# If new datadir doesn't exist, create it
+# If public_path doesn't exist, create it
+if [ -z "$public_path" ]; then
+	public_path=/home/yunohost.app/$app
+	mkdir -p $public_path
+    chmod 755 $public_path
+	chown -R $app:www-data $public_path
+	ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+fi
+
+# If new "/home/yunohost.app/$app" doesn't exist, create it
 if [ -z "/home/yunohost.app/$app" ]; then
-        datadir=/home/yunohost.app/$app
-        mkdir -p $datadir
-        chmod 755 $datadir
-		chown -R $app:www-data $datadir
-        ynh_app_setting_set --app=$app --key=datadir --value=$datadir
-        cp -a "$final_path/public/uploads" "$datadir/uploads"
+        public_path=/home/yunohost.app/$app
+        mkdir -p $public_path
+        chmod 755 $public_path
+		chown -R $app:www-data $public_path
+        ynh_app_setting_set --app=$app --key=public_path --value=$public_path
+        cp -a "$final_path/public/uploads" "$public_path/uploads"
 fi
 
 # If fpm_footprint doesn't exist, create it
@@ -155,8 +164,6 @@ ynh_script_progression --message="Setting $app config..."
 
 # Setup application config
 #ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
-
-#ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
 ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\
         'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\

@@ -90,15 +90,15 @@ chown -R $app:www-data "$final_path"
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --weight=1
 
-datadir=/home/yunohost.app/$app
-ynh_app_setting_set --app=$app --key=datadir --value=$datadir
+public_path=/home/yunohost.app/$app
+ynh_app_setting_set --app=$app --key=public_path --value=$public_path
 
-mkdir -p $datadir/uploads
-mkdir -p $datadir/uploads/{big,import,medium,raw,small,thumb}
+mkdir -p $public_path/uploads
+mkdir -p $public_path/uploads/{big,import,medium,raw,small,thumb}
 
-chmod 750 "$datadir"
-chmod -R o-rwx "$datadir"
-chown -R $app:www-data "$datadir"
+chmod 750 "$public_path"
+chmod -R o-rwx "$public_path"
+chown -R $app:www-data "$public_path"
 
 #=================================================
 # NGINX CONFIGURATION

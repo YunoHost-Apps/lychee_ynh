@@ -25,7 +25,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
@@ -74,13 +74,13 @@ chown -R $app:www-data "$final_path"
 ynh_script_progression --message="Restoring the data directory..."
 
 # Use --not_mandatory for the data directory, because if the backup has been made with BACKUP_CORE_ONLY, there's no data into the backup.
-ynh_restore_file --origin_path="$datadir" --not_mandatory
+ynh_restore_file --origin_path="$public_path" --not_mandatory
 
-mkdir -p $datadir
+mkdir -p $public_path
 
-chmod 755 "$datadir"
-chmod -R o-rwx "$datadir"
-chown -R $app:www-data "$datadir"
+chmod 755 "$public_path"
+chmod -R o-rwx "$public_path"
+chown -R $app:www-data "$public_path"
 
 #=================================================
 # REINSTALL DEPENDENCIES
