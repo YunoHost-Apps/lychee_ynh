@@ -11,10 +11,6 @@
 		setup_private=1
 		setup_public=1
 		upgrade=1
-		# 4.0.8~ynh2
-		upgrade=1	from_commit=2a2fd5b9a9e81ff8e157cf1747418fd11f4211a2
-		# 4.3~ynh1
-		upgrade=1	from_commit=1fa062d50aaa810deeba6426405fbe2e2671492a
 		# 4.4~ynh3
 		upgrade=1	from_commit=a87e16f7ca7e6645610745970bc7c3daa263b2b7
 		backup_restore=1
