@@ -6,7 +6,7 @@
         "en": "Photo-management-system to manage and share photos",
         "fr": "Système de gestion de photos pour gérer et partager des photos"
     },
-    "version": "4.4~ynh3",
+    "version": "4.4.0~ynh4",
     "url": "https://lycheeorg.github.io/",
     "upstream": {
         "license": "MIT",
@@ -30,20 +30,20 @@
         "mysql"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
-            "name": "domain",
-            "type": "domain"
+                "name": "domain",
+                "type": "domain"
             },
             {
-            "name": "path",
-            "type": "path",
+                "name": "path",
+                "type": "path",
                 "example": "/lychee",
                 "default": "/lychee"
             },
             {
-            "name": "is_public",
-            "type": "boolean",
+                "name": "is_public",
+                "type": "boolean",
                 "help": {
                     "en": "If enabled, Lychee will be accessible by people who do not have an account. This can be changed later via the webadmin.",
                     "fr": "Si cette case est cochée, Lychee sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
