@@ -19,6 +19,7 @@ Lychee is a free photo-management tool, which runs on your server or web-space. 
 
 **Shipped version:** 4.5.3~ynh1
 
+
 **Demo:** https://lycheeorg.github.io/demo/
 
 ## Screenshots
