@@ -17,13 +17,21 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 app=$YNH_APP_INSTANCE_NAME
 
 domain=$(ynh_app_setting_get --app=$app --key=domain)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-public_path=$(ynh_app_setting_get --app=$app --key=public_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 
 #=================================================
 # STANDARD REMOVE
+#=================================================
+# REMOVE THE MYSQL DATABASE
+#=================================================
+ynh_script_progression --message="Removing the MySQL database..." --weight=2
+
+# Remove a database if it exists, along with the associated user
+ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
+
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
@@ -36,20 +44,12 @@ ynh_secure_remove --file="$final_path"
 # REMOVE DATA DIR
 #=================================================
 
-# Remove the app data directory with the command `yunohost app remove lychee --purge`
-if [ "$YNH_APP_PURGE" == true ]
+# Remove the data directory if --purge option is used
+if [ "${YNH_APP_PURGE:-0}" -eq 1 ]
 then
-  ynh_script_progression --message="Removing $app data directory..." --weight=2
-  ynh_secure_remove --file="$public_path"
+	ynh_script_progression --message="Removing app data directory..."
+	ynh_secure_remove --file="$datadir"
 fi
-
-#=================================================
-# REMOVE THE MYSQL DATABASE
-#=================================================
-ynh_script_progression --message="Removing the MySQL database..." --weight=2
-
-# Remove a database if it exists, along with the associated user
-ynh_mysql_remove_db --db_user=$db_user --db_name=$db_name
 
 #=================================================
 # REMOVE NGINX CONFIGURATION
