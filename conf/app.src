@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/LycheeOrg/Lychee/releases/download/v4.4.0/Lychee.zip
-SOURCE_SUM=2d451033e392e6c3287f8962524e9b4f5581d8e3dfcc9040690d2dc190274c26
+SOURCE_URL=https://github.com/LycheeOrg/Lychee/releases/download/v4.6.2/Lychee.zip
+SOURCE_SUM=226a00c746d6c6f139a94d74e09fdaecff7c4ffeb974d88557a1794cde8f6f5f
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
