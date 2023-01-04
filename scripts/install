@@ -139,7 +139,7 @@ chown $app:$app "$final_path/.env"
 #=================================================
 ynh_script_progression --message="Installing app with Composer..." --weight=15
 
-ynh_install_composer --install_args="--ignore-platform-reqs"
+ynh_install_composer
 
 #=================================================
 # BUILDING
