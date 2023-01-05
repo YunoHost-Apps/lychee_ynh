@@ -6,8 +6,8 @@ index 9ececfe..106eadd 100644
       *
       * @var string
       */
--    protected $toolPath;
-+    protected $toolPath = '/usr/bin/ffprobe';
+-    protected string $toolPath = '';
++    protected string $toolPath = '/usr/bin/ffprobe';
 
      /**
       * @var string-e
