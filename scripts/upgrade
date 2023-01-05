@@ -179,7 +179,7 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Installing app with Composer..." --weight=1
 
-ynh_install_composer --install_args="--ignore-platform-reqs"
+ynh_install_composer
 
 #=================================================
 # BUILDING
