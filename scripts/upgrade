@@ -26,6 +26,10 @@ app_key=$(ynh_app_setting_get --app=$app --key=app_key)
 datadir=$(ynh_app_setting_get --app=$app --key=datadir)
 phpversion=$YNH_PHP_VERSION
 
+fpm_footprint=$(ynh_app_setting_get --app=$app --key=fpm_footprint)
+fpm_free_footprint=$(ynh_app_setting_get --app=$app --key=fpm_free_footprint)
+fpm_usage=$(ynh_app_setting_get --app=$app --key=fpm_usage)
+
 #=================================================
 # CHECK VERSION
 #=================================================
@@ -99,6 +103,24 @@ if [ -z "/home/yunohost.app/$app" ]; then
         cp -a "$final_path/public/uploads" "$datadir/uploads"
 fi
 
+# If fpm_footprint doesn't exist, create it
+if [ -z "$fpm_footprint" ]; then
+    fpm_footprint=low
+    ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
+fi
+
+# If fpm_free_footprint doesn't exist, create it
+if [ -z "$fpm_free_footprint" ]; then
+    fpm_free_footprint=0
+    ynh_app_setting_set --app=$app --key=fpm_free_footprint --value=$fpm_free_footprint
+fi
+
+# If fpm_usage doesn't exist, create it
+if [ -z "$fpm_usage" ]; then
+    fpm_usage=low
+    ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
+fi
+
 # Cleaning legacy permissions
 if ynh_legacy_permissions_exists; then
 	ynh_legacy_permissions_delete_all
@@ -162,7 +184,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_add_fpm_config --phpversion=$phpversion --usage=$fpm_usage --footprint=$fpm_footprint
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -178,19 +200,19 @@ ynh_add_nginx_config
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Updating a configuration file..."
+#ynh_script_progression --message="Updating a configuration file..."
 
-ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
+#ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env"
 
-chmod 400 "$final_path/.env"
-chown $app:$app "$final_path/.env"
+#chmod 400 "$final_path/.env"
+#chown $app:$app "$final_path/.env"
 
 #=================================================
 # INSTALL APP WITH COMPOSER
 #=================================================
 ynh_script_progression --message="Installing app with Composer..." --weight=1
 
-ynh_install_composer --install_args="--ignore-platform-reqs"
+ynh_install_composer
 
 #=================================================
 # BUILDING
@@ -206,10 +228,10 @@ pushd $final_path
 	php$phpversion artisan view:clear
 popd
 
-ynh_replace_string \
---match_string="\$ffmpeg = FFMpeg::create();" \
---replace_string="\$ffmpeg = FFMpeg::create(array('ffmpeg.binaries'  => '/usr/bin/ffmpeg','ffprobe.binaries' => '/usr/bin/ffprobe',));" \
---target_file="$final_path/app/Actions/Photo/Extensions/VideoEditing.php"
+#ynh_replace_string \
+#--match_string="\$ffmpeg = FFMpeg::create();" \
+#--replace_string="\$ffmpeg = FFMpeg::create(array('ffmpeg.binaries'  => '/usr/bin/ffmpeg','ffprobe.binaries' => '/usr/bin/ffprobe',));" \
+#--target_file="$final_path/app/Actions/Photo/Extensions/VideoEditing.php"
 
 chmod 750 "$final_path"
 chmod 750 "$final_path/bootstrap/cache"
