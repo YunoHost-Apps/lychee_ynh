@@ -25,6 +25,10 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 
 app=$YNH_APP_INSTANCE_NAME
 
+fpm_footprint="low"
+fpm_free_footprint=0
+fpm_usage="low"
+
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -44,6 +48,9 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
+ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
+ynh_app_setting_set --app=$app --key=fpm_free_footprint --value=$fpm_free_footprint
+ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
 
 #=================================================
 # INSTALL DEPENDENCIES
@@ -90,7 +97,7 @@ chown -R $app:www-data "$final_path"
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config
+ynh_add_fpm_config --usage=$fpm_usage --footprint=$fpm_footprint
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
@@ -118,6 +125,13 @@ chmod -R o-rwx "$datadir"
 chown -R $app:www-data "$datadir"
 
 #=================================================
+# INSTALL APP WITH COMPOSER
+#=================================================
+ynh_script_progression --message="Installing app with Composer..." --weight=15
+
+ynh_install_composer
+
+#=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding a configuration file..."
@@ -126,13 +140,6 @@ ynh_add_config --template="../conf/.env.example" --destination="$final_path/.env
 
 chmod 400 "$final_path/.env"
 chown $app:$app "$final_path/.env"
-
-#=================================================
-# INSTALL APP WITH COMPOSER
-#=================================================
-ynh_script_progression --message="Installing app with Composer..." --weight=15
-
-ynh_install_composer --install_args="--ignore-platform-reqs"
 
 #=================================================
 # BUILDING
@@ -144,16 +151,16 @@ pushd $final_path
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
-	patch -p1 < "$YNH_CWD/../conf/ffprobe.patch"
+	#patch -p1 < "$YNH_CWD/../conf/ffprobe.patch"
 popd
 
 # Setup custom user.css file
 ynh_add_config --template="../conf/user.css.example" --destination="$final_path/public/dist/user.css"
 
-ynh_replace_string \
---match_string="\$ffmpeg = FFMpeg::create();" \
---replace_string="\$ffmpeg = FFMpeg::create(array('ffmpeg.binaries'  => '/usr/bin/ffmpeg','ffprobe.binaries' => '/usr/bin/ffprobe',));" \
---target_file="$final_path/app/Actions/Photo/Extensions/VideoEditing.php"
+#ynh_replace_string \
+#--match_string="\$ffmpeg = FFMpeg::create();" \
+#--replace_string="\$ffmpeg = FFMpeg::create(array('ffmpeg.binaries'  => '/usr/bin/ffmpeg','ffprobe.binaries' => '/usr/bin/ffprobe',));" \
+#--target_file="$final_path/app/Actions/Photo/Extensions/VideoEditing.php"
 
 #=================================================
 # GENERIC FINALIZATION
