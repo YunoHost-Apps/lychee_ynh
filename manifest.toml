@@ -51,7 +51,7 @@ ram.runtime = "50M"
     main.url = "/"
 
     [resources.apt]
-    packages = "ffmpeg php8.1-xml php8.1-imagick php8.1-bcmath php8.1-exif php8.1-mbstring php8.1-gd php8.1-mysqli php8.1-zip php8.1-intl"
+    packages = "mariadb-server ffmpeg php8.1-xml php8.1-imagick php8.1-bcmath php8.1-exif php8.1-mbstring php8.1-gd php8.1-mysqli php8.1-zip php8.1-intl"
 
     [resources.database]
     type = "mysql"
