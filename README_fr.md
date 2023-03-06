@@ -5,31 +5,32 @@ It shall NOT be edited by hand.
 
 # Lychee pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+
 [![Installer Lychee avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Lychee rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Lychee rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely. 
 
-**Version incluse :** 4.7.0~ynh1
+**Version incluse :** 4.7.0~ynh2
 
 **Démo :** https://lycheeorg.github.io/demo/
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Lychee](./doc/screenshots/screenshot.jpg)
+![Capture d’écran de Lychee](./doc/screenshots/screenshot.jpg)
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://lycheeorg.github.io/>
-* Documentation officielle de l'admin : <https://lycheeorg.github.io/docs/>
-* Dépôt de code officiel de l'app : <https://github.com/LycheeOrg/Lychee>
+* Site officiel de l’app : <https://lycheeorg.github.io/>
+* Documentation officielle de l’admin : <https://lycheeorg.github.io/docs/>
+* Dépôt de code officiel de l’app : <https://github.com/LycheeOrg/Lychee>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_lychee>
 * Signaler un bug : <https://github.com/YunoHost-Apps/lychee_ynh/issues>
 
@@ -45,4 +46,4 @@ ou
 sudo yunohost app upgrade lychee -u https://github.com/YunoHost-Apps/lychee_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>

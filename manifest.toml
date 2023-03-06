@@ -1,0 +1,57 @@
+packaging_format = 2
+
+id = "lychee"
+name = "Lychee"
+description.en = "Photo-management-system to manage and share photos"
+description.fr = "Système de gestion de photos pour gérer et partager des photos"
+
+version = "4.7.0~ynh2"
+
+maintainers = ["eric_G"]
+
+[upstream]
+license = "MIT"
+website = "https://lycheeorg.github.io/"
+demo = "https://lycheeorg.github.io/demo/"
+admindoc = "https://lycheeorg.github.io/docs/"
+code = "https://github.com/LycheeOrg/Lychee"
+
+[integration]
+yunohost = ">= 11.1.13"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/lychee"
+
+    [install.init_main_permission]
+    help.en = "If enabled, Lychee will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si cette case est cochée, Lychee sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    type = "group"
+    default = "visitors"
+
+[resources]
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "mariadb-server ffmpeg php8.1-xml php8.1-imagick php8.1-bcmath php8.1-exif php8.1-mbstring php8.1-gd php8.1-mysqli php8.1-zip php8.1-intl"
+
+    [resources.database]
+    type = "mysql"
