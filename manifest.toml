@@ -5,7 +5,7 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "4.7.0~ynh2"
+version = "4.7.0~ynh3"
 
 maintainers = ["eric_G"]
 
@@ -49,6 +49,7 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_header = false
 
     [resources.apt]
     packages = "mariadb-server ffmpeg php8.1-xml php8.1-imagick php8.1-bcmath php8.1-exif php8.1-mbstring php8.1-gd php8.1-mysqli php8.1-zip php8.1-intl"
