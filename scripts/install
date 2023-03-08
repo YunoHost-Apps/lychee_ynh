@@ -63,7 +63,7 @@ ynh_script_progression --message="Creating a data directory..." --weight=1
 mkdir -p $data_dir/uploads
 mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
-chmod 750 "$data_dir"
+chmod 2775 "$data_dir"
 chmod -R o-rwx "$data_dir"
 chown -R $app:www-data "$data_dir"
 
