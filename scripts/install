@@ -17,6 +17,8 @@ fpm_footprint="low"
 fpm_free_footprint=0
 fpm_usage="low"
 
+timezone="$(cat /etc/timezone)"
+
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
