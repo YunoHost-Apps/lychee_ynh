@@ -102,6 +102,11 @@ popd
 # Setup custom user.css file
 ynh_add_config --template="../conf/user.css.example" --destination="$install_dir/public/dist/user.css"
 
+
+chgrp www-data -R $install_dir/storage $install_dir/public/dist $install_dir/public/sym $data_dir/uploads
+chmod -R 775 $install_dir/storage/* $install_dir/app/* $install_dir/public/dist $install_dir/public/sym $data_dir/uploads $install_dir/bootstrap/
+chmod 775 $install_dir/.
+
 #=================================================
 # END OF SCRIPT
 #=================================================
