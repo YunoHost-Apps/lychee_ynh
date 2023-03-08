@@ -66,10 +66,8 @@ ynh_script_progression --message="Creating a data directory..." --weight=1
 mkdir -p $data_dir/uploads
 mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
-chmod 775 "$data_dir/uploads/"
-chmod 2775 "$data_dir/uploads/import/"
-chmod -R o-rwx "$data_dir/uploads/"
-chown -R $app:$app "$data_dir/uploads/"
+chgrp $app -R $install_dir/storage $install_dir/public/dist $install_dir/public/sym $data_dir/uploads
+chmod -R 2775 $install_dir/storage/* $install_dir/app/* $install_dir/public/dist $install_dir/public/sym $data_dir/uploads $install_dir/bootstrap/
 
 #=================================================
 # INSTALL APP WITH COMPOSER
