@@ -67,6 +67,7 @@ mkdir -p $data_dir/uploads
 mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
 chmod 775 "$data_dir/uploads/"
+chmod 0775 "$data_dir/uploads/import/"
 chmod -R o-rwx "$data_dir/uploads/"
 chown -R $app:$app "$data_dir/uploads/"
 
