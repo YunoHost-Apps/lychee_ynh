@@ -17,6 +17,8 @@ fpm_footprint="low"
 fpm_free_footprint=0
 fpm_usage="low"
 
+timezone="$(cat /etc/timezone)"
+
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
@@ -36,6 +38,7 @@ ynh_setup_source --dest_dir="$install_dir"
 chmod 750 "$install_dir/bootstrap/cache"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+chown -R $app: "$install_dir/public/sym/"
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -63,9 +66,10 @@ ynh_script_progression --message="Creating a data directory..." --weight=1
 mkdir -p $data_dir/uploads
 mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
-chmod 750 "$data_dir"
-chmod -R o-rwx "$data_dir"
-chown -R $app:www-data "$data_dir"
+chmod 775 "$data_dir/uploads/"
+chmod 2775 "$data_dir/uploads/import/"
+chmod -R o-rwx "$data_dir/uploads/"
+chown -R $app:$app "$data_dir/uploads/"
 
 #=================================================
 # INSTALL APP WITH COMPOSER
