@@ -65,7 +65,7 @@ mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
 chmod 2775 "$data_dir"
 chmod -R o-rwx "$data_dir"
-chown -R $app:www-data "$data_dir"
+chown -R $app:$app "$data_dir"
 
 #=================================================
 # INSTALL APP WITH COMPOSER
