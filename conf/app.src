@@ -1,7 +1,0 @@
-SOURCE_URL=https://github.com/LycheeOrg/Lychee/releases/download/v4.7.2/Lychee.zip
-SOURCE_SUM=6353db3f2b0963f4a94576c2b16ed7eb7bb2954cd0b0dd745ba4db47998e8df0
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=zip
-SOURCE_IN_SUBDIR=true
-SOURCE_FILENAME=
-SOURCE_EXTRACT=true
