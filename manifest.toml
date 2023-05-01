@@ -17,7 +17,7 @@ admindoc = "https://lycheeorg.github.io/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.18"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -47,12 +47,14 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://github.com/LycheeOrg/Lychee/releases/download/v4.7.2/Lychee.zip"
         sha256 = "6353db3f2b0963f4a94576c2b16ed7eb7bb2954cd0b0dd745ba4db47998e8df0"
+        autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
     [resources.install_dir]
 
     [resources.data_dir]
+    subdirs = ["uploads/big", "uploads/import", "uploads/medium", "uploads/raw", "uploads/small", "uploads/thumb"]
 
     [resources.permissions]
     main.url = "/"

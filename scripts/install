@@ -63,8 +63,8 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --weight=1
 
-mkdir -p $data_dir/uploads
-mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
+#mkdir -p $data_dir/uploads
+#mkdir -p $data_dir/uploads/{big,import,medium,raw,small,thumb}
 
 chgrp $app -R $install_dir/storage $install_dir/public/dist $install_dir/public/sym $data_dir/uploads
 chmod -R 2775 $install_dir/storage/* $install_dir/app/* $install_dir/public/dist $install_dir/public/sym $data_dir/uploads $install_dir/bootstrap/
