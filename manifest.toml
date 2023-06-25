@@ -17,7 +17,7 @@ admindoc = "https://lycheeorg.github.io/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 11.1.19"
+yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = true
 ldap = false
