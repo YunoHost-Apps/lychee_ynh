@@ -52,6 +52,11 @@ then
 	ynh_setup_source --dest_dir="$install_dir" --keep=".env public/dist/user.css"
 fi
 
+ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\
+        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\
+        'ffprobe.binaries' => '/usr/bin/ffprobe',\
+));" --target_file="$install_dir/app/Actions/Photo/Extensions/VideoEditing.php"
+
 chmod 750 "$install_dir/bootstrap/cache"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"

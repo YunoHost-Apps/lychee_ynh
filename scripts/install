@@ -97,10 +97,16 @@ pushd $install_dir
 	php$phpversion artisan migrate -n --force
 	php$phpversion artisan config:clear -n
 	php$phpversion artisan config:cache -n
+	patch -p1 < "$YNH_CWD/../conf/ffprobe.patch"
 popd
 
 # Setup custom user.css file
 ynh_add_config --template="../conf/user.css.example" --destination="$install_dir/public/dist/user.css"
+
+ynh_replace_string --match_string="\$ffmpeg = FFMpeg::create();" --replace_string="\$ffmpeg = FFMpeg::create(array(\
+        'ffmpeg.binaries'  => '/usr/bin/ffmpeg',\
+        'ffprobe.binaries' => '/usr/bin/ffprobe',\
+));" --target_file="$install_dir/app/Actions/Photo/Extensions/VideoEditing.php"
 
 #=================================================
 # END OF SCRIPT
