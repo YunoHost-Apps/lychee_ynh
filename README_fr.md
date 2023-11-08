@@ -31,7 +31,7 @@ Lychee is a free photo-management tool, which runs on your server or web-space. 
 * Site officiel de l’app : <https://lycheeorg.github.io/>
 * Documentation officielle de l’admin : <https://lycheeorg.github.io/docs/>
 * Dépôt de code officiel de l’app : <https://github.com/LycheeOrg/Lychee>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_lychee>
+* YunoHost Store: <https://apps.yunohost.org/app/lychee>
 * Signaler un bug : <https://github.com/YunoHost-Apps/lychee_ynh/issues>
 
 ## Informations pour les développeurs
