@@ -16,9 +16,10 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Lychee is a free photo-management tool, which runs on your server or web-space. Installing is a matter of seconds. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely. 
+Lychee est un outil de gestion de photos, qui s'exécute sur votre serveur ou espace Web. Téléchargez, gérez et partagez des photos comme à partir d'une application native. Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont stockées en toute sécurité.
 
-**Version incluse :** 4.13.0~ynh1
+
+**Version incluse :** 5.0.0~ynh1
 
 **Démo :** https://lycheeorg.github.io/demo/
 

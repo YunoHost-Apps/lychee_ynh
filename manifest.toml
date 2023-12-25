@@ -5,7 +5,7 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "4.13.0~ynh1"
+version = "5.0.0~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -18,7 +18,7 @@ code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
 yunohost = ">= 11.2"
-architectures = "all"
+architectures = ["arm64", "amd64"]
 multi_instance = true
 ldap = false
 sso = false
@@ -35,8 +35,6 @@ ram.runtime = "50M"
     default = "/lychee"
 
     [install.init_main_permission]
-    help.en = "If enabled, Lychee will be accessible by people who do not have an account. This can be changed later via the webadmin."
-    help.fr = "Si cette case est cochée, Lychee sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
     type = "group"
     default = "visitors"
 
@@ -45,8 +43,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/LycheeOrg/Lychee/archive/refs/tags/v4.13.0.tar.gz"
-        sha256 = "6587eb628bdd5ac40f70ed78c77f984b6261a1efb62627981ce928c9e4c8386c"
+        url = "https://github.com/LycheeOrg/Lychee/archive/refs/tags/v5.0.0.tar.gz"
+        sha256 = "fcb37968c63725f0dc9331e88070a568a6d795580bb3a6525ec3edab81672dfc"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
