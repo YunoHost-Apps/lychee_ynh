@@ -20,6 +20,14 @@ fpm_usage="low"
 timezone="$(cat /etc/timezone)"
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=7
+
+# Install Nodejs
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 
@@ -68,6 +76,17 @@ chmod -R 2775 $install_dir/storage/* $install_dir/app/* $install_dir/public/dist
 ynh_script_progression --message="Installing app with Composer..." --weight=15
 
 ynh_install_composer
+
+#=================================================
+# INSTALL LYCHEE
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=10
+
+pushd $install_dir
+ 	ynh_use_nodejs
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production $ynh_npm run build
+popd
 
 #=================================================
 # ADD A CONFIGURATION
