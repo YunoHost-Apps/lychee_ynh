@@ -20,6 +20,14 @@ fpm_usage="low"
 timezone="$(cat /etc/timezone)"
 
 #=================================================
+# INSTALL DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Installing dependencies..." --weight=7
+
+# Install Nodejs
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
 

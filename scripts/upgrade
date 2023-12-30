@@ -58,6 +58,14 @@ chown -R $app:www-data "$install_dir"
 chmod -R 755 $data_dir
 
 #=================================================
+# UPGRADE DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Upgrading dependencies..." --weight=5
+
+# Install Nodejs
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
+
+#=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=2
@@ -86,6 +94,17 @@ ynh_add_nginx_config
 ynh_script_progression --message="Installing app with Composer..." --weight=1
 
 ynh_install_composer
+
+#=================================================
+# INSTALL LYCHEE
+#=================================================
+ynh_script_progression --message="Installing $app..." --weight=10
+
+pushd $install_dir
+ 	ynh_use_nodejs
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install
+	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production $ynh_npm run build
+popd
 
 #=================================================
 # BUILDING
