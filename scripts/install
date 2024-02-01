@@ -13,10 +13,6 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-fpm_footprint="low"
-fpm_free_footprint=0
-fpm_usage="low"
-
 timezone="$(cat /etc/timezone)"
 
 #=================================================
@@ -26,14 +22,6 @@ ynh_script_progression --message="Installing dependencies..." --weight=7
 
 # Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-
-ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
-ynh_app_setting_set --app=$app --key=fpm_free_footprint --value=$fpm_free_footprint
-ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -55,7 +43,7 @@ chmod -R 755 $data_dir
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=$fpm_usage --footprint=$fpm_footprint
+ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
@@ -110,10 +98,10 @@ pushd $install_dir
 	php$phpversion artisan config:cache -n
 popd
 
-# Setup custom user.css file
-ynh_add_config --template="user.css.example" --destination="$install_dir/public/dist/user.css"
-chmod 750 "$install_dir/public/dist/user.css"
-chown $app:$app "$install_dir/public/dist/user.css"
+chmod 750 "$install_dir"
+chmod 750 "$install_dir/bootstrap/cache"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # END OF SCRIPT
