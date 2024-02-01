@@ -112,6 +112,8 @@ popd
 
 # Setup custom user.css file
 ynh_add_config --template="user.css.example" --destination="$install_dir/public/dist/user.css"
+chmod 750 "$install_dir/public/dist/user.css"
+chown $app:$app "$install_dir/public/dist/user.css"
 
 #=================================================
 # END OF SCRIPT
