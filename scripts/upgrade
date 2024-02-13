@@ -49,7 +49,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir="$install_dir" --keep=".env public/dist/user.css"
+	ynh_setup_source --dest_dir="$install_dir" --keep=".env public/dist/user.css" --full_replace=1
 fi
 
 chmod 750 "$install_dir/bootstrap/cache"
