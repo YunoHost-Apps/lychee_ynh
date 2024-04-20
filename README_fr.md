@@ -21,7 +21,7 @@ Téléchargez, gérez et partagez des photos comme à partir d'une application n
 Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont stockées en toute sécurité.
 
 
-**Version incluse :** 5.1.2~ynh2
+**Version incluse :** 5.1.2~ynh2
 
 **Démo :** <https://lycheeorg.github.io/demo/>
 
