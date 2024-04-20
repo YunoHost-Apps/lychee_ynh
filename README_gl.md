@@ -16,9 +16,12 @@ NON debe editarse manualmente.
 
 ## Vista xeral
 
-Lychee is a free photo-management tool, which runs on your server or web-space. Upload, manage and share photos like from a native application. Lychee comes with everything you need and all your photos are stored securely. 
+Lychee is a free photo-management tool, which runs on your server or web-space.  
+Upload, manage and share photos like from a native application.  
+Lychee comes with everything you need and all your photos are stored securely.
 
-**Versión proporcionada:** 5.1.2~ynh1
+
+**Versión proporcionada:** 5.2.1~ynh1
 
 **Demo:** <https://lycheeorg.github.io/demo/>
 

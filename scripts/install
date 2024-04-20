@@ -13,10 +13,6 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-fpm_footprint="low"
-fpm_free_footprint=0
-fpm_usage="low"
-
 timezone="$(cat /etc/timezone)"
 
 #=================================================
@@ -25,15 +21,7 @@ timezone="$(cat /etc/timezone)"
 ynh_script_progression --message="Installing dependencies..." --weight=7
 
 # Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-
-ynh_app_setting_set --app=$app --key=fpm_footprint --value=$fpm_footprint
-ynh_app_setting_set --app=$app --key=fpm_free_footprint --value=$fpm_free_footprint
-ynh_app_setting_set --app=$app --key=fpm_usage --value=$fpm_usage
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -45,9 +33,9 @@ ynh_setup_source --dest_dir="$install_dir"
 
 chmod 750 "$install_dir/bootstrap/cache"
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
-chown -R $app: "$install_dir/public/sym/"
-chmod -R 755 $data_dir
+chown -R "$app:www-data" "$install_dir"
+chown -R "$app:" "$install_dir/public/sym/"
+chmod -R 755 "$data_dir"
 
 #=================================================
 # PHP-FPM CONFIGURATION
@@ -55,7 +43,7 @@ chmod -R 755 $data_dir
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated PHP-FPM config
-ynh_add_fpm_config --usage=$fpm_usage --footprint=$fpm_footprint
+ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
@@ -67,8 +55,8 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Creating a data directory..." --weight=1
 
-chgrp $app -R $install_dir/storage $install_dir/public/dist $install_dir/public/sym $data_dir/uploads
-chmod -R 2775 $install_dir/storage/* $install_dir/app/* $install_dir/public/dist $install_dir/public/sym $data_dir/uploads $install_dir/bootstrap/
+chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
+chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 
 #=================================================
 # INSTALL APP WITH COMPOSER
@@ -82,10 +70,10 @@ ynh_install_composer
 #=================================================
 ynh_script_progression --message="Installing $app..." --weight=10
 
-pushd $install_dir
+pushd "$install_dir"
  	ynh_use_nodejs
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH $ynh_npm install
-	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH NODE_ENV=production $ynh_npm run build
+	ynh_exec_warn_less sudo -u "$app" env "$ynh_node_load_PATH" "$ynh_npm" install
+	ynh_exec_warn_less sudo -u "$app" env "$ynh_node_load_PATH" NODE_ENV=production "$ynh_npm" run build
 popd
 
 #=================================================
@@ -96,22 +84,24 @@ ynh_script_progression --message="Adding a configuration file..."
 ynh_add_config --template=".env.example" --destination="$install_dir/.env"
 
 chmod 400 "$install_dir/.env"
-chown $app:$app "$install_dir/.env"
+chown "$app:$app" "$install_dir/.env"
 
 #=================================================
 # BUILDING
 #=================================================
 ynh_script_progression --message="Building..." --weight=10
 
-pushd $install_dir
-	php$phpversion artisan key:generate -n --force --env
-	php$phpversion artisan migrate -n --force
-	php$phpversion artisan config:clear -n
-	php$phpversion artisan config:cache -n
+pushd "$install_dir"
+	"php$phpversion" artisan key:generate -n --force --env
+	"php$phpversion" artisan migrate -n --force
+	"php$phpversion" artisan config:clear -n
+	"php$phpversion" artisan config:cache -n
 popd
 
-# Setup custom user.css file
-ynh_add_config --template="user.css.example" --destination="$install_dir/public/dist/user.css"
+chmod 750 "$install_dir"
+chmod 750 "$install_dir/bootstrap/cache"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # END OF SCRIPT
