@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Lychee
+# YunoHost 上的 Lychee
 
 [![集成程度](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![工作状态](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
 
