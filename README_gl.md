@@ -21,7 +21,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Versión proporcionada:** 5.3.0~ynh2
+**Versión proporcionada:** 5.3.1~ynh1
 
 **Demo:** <https://lycheeorg.github.io/demo/>
 
