@@ -12,6 +12,14 @@ source /usr/share/yunohost/helpers
 timezone="$(cat /etc/timezone)"
 
 #=================================================
+# UPGRADE DEPENDENCIES
+#=================================================
+ynh_script_progression --message="Upgrading dependencies..." --weight=5
+
+# Install Nodejs
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Upgrading source files..." --weight=4
@@ -19,17 +27,8 @@ ynh_script_progression --message="Upgrading source files..." --weight=4
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" --keep=".env" #--full_replace=1 
 
-chmod 750 "$install_dir/bootstrap/cache"
 chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=5
-
-# Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
 
 #=================================================
 # PHP-FPM CONFIGURATION
