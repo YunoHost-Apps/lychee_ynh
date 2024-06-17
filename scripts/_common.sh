@@ -5,9 +5,7 @@
 #=================================================
 
 # Composer version
-YNH_COMPOSER_VERSION="2.5.4"
-
-nodejs_version=16
+YNH_COMPOSER_VERSION="2.7.7"
 
 #=================================================
 # PERSONAL HELPERS
