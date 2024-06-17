@@ -16,14 +16,6 @@ source /usr/share/yunohost/helpers
 timezone="$(cat /etc/timezone)"
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=7
-
-# Install Nodejs
-ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
-
-#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=3

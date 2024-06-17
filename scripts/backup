@@ -33,10 +33,6 @@ ynh_backup --src_path="$data_dir" --is_big
 
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
-#=================================================
-# BACKUP THE PHP-FPM CONFIGURATION
-#=================================================
-
 ynh_backup --src_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 
 #=================================================
