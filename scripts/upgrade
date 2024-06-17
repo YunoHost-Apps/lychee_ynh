@@ -17,7 +17,7 @@ timezone="$(cat /etc/timezone)"
 ynh_script_progression --message="Upgrading source files..." --weight=4
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --keep=".env" --full_replace=1 
+ynh_setup_source --dest_dir="$install_dir" --keep=".env public/uploads/ public/dist/user.css" --full_replace=1  
 
 chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
