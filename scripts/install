@@ -10,7 +10,7 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# RETRIEVE ARGUMENTS FROM THE MANIFEST
+# INITIALIZE AND STORE SETTINGS
 #=================================================
 
 timezone="$(cat /etc/timezone)"
@@ -27,9 +27,19 @@ chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
-# PHP-FPM CONFIGURATION
+# APP INITIAL CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
+ynh_script_progression --message="Adding $app's configuration files..." --weight=1
+
+ynh_add_config --template=".env.example" --destination="$install_dir/.env"
+
+chmod 400 "$install_dir/.env"
+chown "$app:$app" "$install_dir/.env"
+
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
@@ -55,19 +65,9 @@ ynh_script_progression --message="Installing app with Composer..." --weight=15
 ynh_install_composer
 
 #=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..."
-
-ynh_add_config --template=".env.example" --destination="$install_dir/.env"
-
-chmod 400 "$install_dir/.env"
-chown "$app:$app" "$install_dir/.env"
-
-#=================================================
 # BUILDING
 #=================================================
-ynh_script_progression --message="Building..." --weight=10
+ynh_script_progression --message="configuring $app..." --weight=10
 
 pushd "$install_dir"
 	"php$phpversion" artisan key:generate -n --force --env

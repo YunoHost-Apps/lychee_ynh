@@ -23,16 +23,16 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 # RESTORE THE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Restoring the data directory..."
+ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$data_dir" --not_mandatory
 
 chown -R "$app:www-data" "$data_dir"
 
 #=================================================
-# RESTORE THE PHP-FPM CONFIGURATION
+# RESTORE SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Restoring the PHP-FPM configuration..."
+ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
 
 ynh_restore_file --origin_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 
@@ -45,7 +45,7 @@ ynh_mysql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name
 #=================================================
 # RELOAD NGINX AND PHP-FPM
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server and PHP-FPM..."
+ynh_script_progression --message="Reloading NGINX web server and PHP-FPM..." --weight=1
 
 ynh_systemd_action --service_name="php$phpversion-fpm" --action=reload
 ynh_systemd_action --service_name=nginx --action=reload
