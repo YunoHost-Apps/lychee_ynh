@@ -66,7 +66,7 @@ pushd "$install_dir"
 popd
 
 chown -R "$app:www-data" "$install_dir"
-chmod -R 775 /home/yunohost.app/lychee/
+chmod -R 775 /home/yunohost.app/$app/
 chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
 chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 

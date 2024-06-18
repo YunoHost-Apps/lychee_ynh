@@ -19,6 +19,8 @@ ynh_restore_file --origin_path="$install_dir"
 
 chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
+chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym"
+chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$install_dir/bootstrap/"
 
 #=================================================
 # RESTORE THE DATA DIRECTORY
@@ -27,7 +29,10 @@ ynh_script_progression --message="Restoring the data directory..." --weight=1
 
 ynh_restore_file --origin_path="$data_dir" --not_mandatory
 
+chmod -R 775 "$data_dir"
 chown -R "$app:www-data" "$data_dir"
+chgrp "$app" -R "$data_dir/uploads"
+chmod -R 2775 "$data_dir/uploads"
 
 #=================================================
 # RESTORE SYSTEM CONFIGURATIONS
