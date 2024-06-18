@@ -23,7 +23,6 @@ ynh_script_progression --message="Setting up source files..." --weight=3
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir"
 
-chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
@@ -46,16 +45,6 @@ ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-#=================================================
-# SPECIFIC SETUP
-#=================================================
-# CREATE DATA DIRECTORY
-#=================================================
-ynh_script_progression --message="Creating a data directory..." --weight=1
-
-#chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
-#chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 
 #=================================================
 # INSTALL APP WITH COMPOSER

@@ -17,10 +17,9 @@ timezone="$(cat /etc/timezone)"
 ynh_script_progression --message="Upgrading source files..." --weight=4
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir" --keep=".env public/uploads/ public/dist/user.css" --full_replace=1  
+ynh_setup_source --dest_dir="$install_dir" --keep=".env public/uploads/" --full_replace=1  
 
-chmod -R o-rwx "$install_dir"
-chown -R "$app:$app" "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -44,14 +43,6 @@ ynh_add_fpm_config
 ynh_add_nginx_config
 
 #=================================================
-# CREATE DATA DIRECTORY
-#=================================================
-ynh_script_progression --message="Creating a data directory..." --weight=1
-
-chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
-chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
-
-#=================================================
 # INSTALL APP WITH COMPOSER
 #=================================================
 ynh_script_progression --message="Installing app with Composer..." --weight=1
@@ -72,6 +63,10 @@ pushd "$install_dir"
 	"php$phpversion" artisan config:cache -n
 	"php$phpversion" artisan view:clear
 popd
+
+chown -R "$app:www-data" "$install_dir"
+chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
+chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 
 #=================================================
 # END OF SCRIPT
