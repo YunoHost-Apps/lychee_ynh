@@ -76,11 +76,6 @@ pushd "$install_dir"
 	"php$phpversion" artisan config:cache -n
 popd
 
-chmod 750 "$install_dir"
-chmod 750 "$install_dir/bootstrap/cache"
-chmod -R o-rwx "$install_dir"
-chown -R "$app:www-data" "$install_dir"
-
 #=================================================
 # END OF SCRIPT
 #=================================================
