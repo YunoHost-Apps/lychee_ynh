@@ -5,7 +5,7 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "5.3.1~ynh1"
+version = "5.4.0~ynh1"
 
 maintainers = []
 
@@ -46,8 +46,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/LycheeOrg/Lychee/archive/refs/tags/v5.3.1.tar.gz"
-        sha256 = "4b45b2f486f2c3088aecea4682b9a5159c2b1c7657785f3580e2443c4256184e"
+        url = "https://github.com/LycheeOrg/Lychee/releases/download/v5.4.0/Lychee.zip"
+        sha256 = "bdee8831cd5564ab1e691eaf51dba9b176a977be39eb39d5dcceab1064b82c61"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
@@ -63,7 +63,7 @@ ram.runtime = "50M"
     main.auth_header = false
 
     [resources.apt]
-    packages = "mariadb-server, ffmpeg, php8.2-xml, php8.2-imagick, php8.2-bcmath, php8.2-exif, php8.2-mbstring, php8.2-gd, php8.2-mysqli, php8.2-zip, php8.2-intl"
+    packages = "mariadb-server, ffmpeg, php8.3-xml, php8.3-imagick, php8.3-bcmath, php8.3-exif, php8.3-mbstring, php8.3-gd, php8.3-mysqli, php8.3-zip, php8.3-intl"
 
     [resources.database]
     type = "mysql"
