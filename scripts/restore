@@ -35,6 +35,13 @@ chgrp "$app" -R "$data_dir/uploads"
 chmod -R 2775 "$data_dir/uploads"
 
 #=================================================
+# RESTORE THE MYSQL DATABASE
+#=================================================
+ynh_script_progression --message="Restoring the MySQL database..." --weight=1
+
+ynh_mysql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" < ./db.sql
+
+#=================================================
 # RESTORE SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
@@ -42,8 +49,6 @@ ynh_script_progression --message="Restoring system configurations related to $ap
 ynh_restore_file --origin_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
 
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
-
-ynh_mysql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" < ./db.sql
 
 #=================================================
 # GENERIC FINALIZATION
