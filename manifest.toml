@@ -48,7 +48,7 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://github.com/LycheeOrg/Lychee/archive/refs/tags/v5.5.0.tar.gz"
         sha256 = "ce49a1c6f26b0007ad2c6534cefd25122a860e8ad7f8ecb8510b1c6a91bad0f1"
-        autoupdate.strategy = "latest_github_tag"
+        autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
     allow_email = true
