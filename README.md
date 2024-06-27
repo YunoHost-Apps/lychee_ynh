@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Lychee for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![Working status](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+[![Integration level](https://dash.yunohost.org/integration/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/) ![Working status](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
 
 [![Install Lychee with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 

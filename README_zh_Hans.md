@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Lychee
 
-[![集成程度](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![工作状态](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
 
 [![使用 YunoHost 安装 Lychee](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
