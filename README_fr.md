@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Lychee pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
 
 [![Installer Lychee avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
@@ -21,7 +21,7 @@ Téléchargez, gérez et partagez des photos comme à partir d'une application n
 Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont stockées en toute sécurité.
 
 
-**Version incluse :** 5.4.0~ynh1
+**Version incluse :** 5.5.0~ynh1
 
 **Démo :** <https://lycheeorg.github.io/demo/>
 
