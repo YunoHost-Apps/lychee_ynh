@@ -5,7 +5,7 @@
 
 # YunoHost 上的 Lychee
 
-[![集成程度](https://dash.yunohost.org/integration/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/) ![工作状态](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+[![集成程度](https://dash.yunohost.org/integration/lychee.svg)](https://dash.yunohost.org/appci/app/lychee) ![工作状态](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
 
 [![使用 YunoHost 安装 Lychee](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
@@ -21,7 +21,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**分发版本：** 5.5.0~ynh1
+**分发版本：** 5.4.0~ynh1
 
 **演示：** <https://lycheeorg.github.io/demo/>
 
