@@ -23,7 +23,7 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 **Shipped version:** 5.5.1~ynh1
 
-**Demo:** <https://lycheeorg.github.io/demo/>
+**Demo:** <https://lychee-demo.fly.dev/landing>
 
 ## Screenshots
 

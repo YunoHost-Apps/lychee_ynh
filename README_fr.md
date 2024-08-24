@@ -23,7 +23,7 @@ Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont s
 
 **Version incluse :** 5.5.1~ynh1
 
-**Démo :** <https://lycheeorg.github.io/demo/>
+**Démo :** <https://lychee-demo.fly.dev/landing>
 
 ## Captures d’écran
 
