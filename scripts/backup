@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
 source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
@@ -26,8 +25,6 @@ ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
 
 ynh_backup "/etc/php/$php_version/fpm/pool.d/$app.conf"
 
-#=================================================
-# SPECIFIC BACKUP
 #=================================================
 # BACKUP THE MYSQL DATABASE
 #=================================================
