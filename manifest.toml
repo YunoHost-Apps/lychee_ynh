@@ -5,19 +5,20 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "5.5.1~ynh1"
+version = "5.5.1~ynh2"
 
 maintainers = []
 
 [upstream]
 license = "MIT"
 website = "https://lycheeorg.github.io/"
-demo = "https://lycheeorg.github.io/demo/"
+demo = "https://lychee-demo.fly.dev/landing"
 admindoc = "https://lycheeorg.github.io/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.29"
+helpers_version = "2.1"
 architectures = ["arm64", "amd64"]
 multi_instance = true
 
@@ -54,6 +55,7 @@ ram.runtime = "50M"
     allow_email = true
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.data_dir]
     subdirs = ["uploads/big", "uploads/import", "uploads/medium", "uploads/raw", "uploads/small", "uploads/thumb"]
