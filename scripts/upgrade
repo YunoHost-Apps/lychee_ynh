@@ -12,7 +12,7 @@ timezone="$(cat /etc/timezone)"
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --keep=".env public/uploads/" --full_replace
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".env public/uploads/"
 
 #=================================================
 # UPDATE A CONFIG FILE
