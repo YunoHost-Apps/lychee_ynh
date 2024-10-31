@@ -5,7 +5,7 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "5.5.1~ynh2"
+version = "6.0.1~ynh1"
 
 maintainers = []
 
@@ -17,7 +17,7 @@ admindoc = "https://lycheeorg.github.io/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 11.2.29"
+yunohost = ">= 11.2.30"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64"]
 multi_instance = true
@@ -47,8 +47,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/LycheeOrg/Lychee/releases/download/v5.5.1/Lychee.zip"
-        sha256 = "66a3d7f300610551ca8ad07ebe195a5a863e55597a4a972f1354d9e96f34f757"
+        url = "https://github.com/LycheeOrg/Lychee/releases/download/v6.0.1/Lychee.zip"
+        sha256 = "6924c37a4f9a12c26563fb5ea0b6c0a229815145d97ba74d37eddd6379e319d9"
         autoupdate.strategy = "latest_github_release"
 
     [resources.system_user]
