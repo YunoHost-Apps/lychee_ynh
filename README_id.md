@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Lychee untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/lychee.svg)](https://ci-apps.yunohost.org/ci/apps/lychee/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/lychee.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/lychee.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/lychee)](https://ci-apps.yunohost.org/ci/apps/lychee/)
+![Status kerja](https://apps.yunohost.org/badge/state/lychee)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/lychee)
 
 [![Pasang Lychee dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=lychee)
 
@@ -21,7 +23,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Versi terkirim:** 6.0.1~ynh1
+**Versi terkirim:** 6.1.2~ynh1
 
 **Demo:** <https://lychee-demo.fly.dev/landing>
 
