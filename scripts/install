@@ -43,8 +43,8 @@ ynh_composer_install
 ynh_composer_exec install --no-dev
 
 ynh_nodejs_install
-npm install
-npm run build
+# npm install
+# npm run build
 
 #=================================================
 # BUILDING
