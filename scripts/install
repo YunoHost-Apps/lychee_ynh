@@ -43,8 +43,6 @@ ynh_composer_install
 ynh_composer_exec install --no-dev
 
 ynh_nodejs_install
-# npm install
-# npm run build
 
 #=================================================
 # BUILDING
@@ -52,7 +50,9 @@ ynh_nodejs_install
 ynh_script_progression "configuring $app..."
 
 pushd "$install_dir"
-	"php$php_version" artisan key:generate -n --force --env
+	 npm install
+         npm run build 
+        "php$php_version" artisan key:generate -n --force --env
 	"php$php_version" artisan migrate -n --force
 	"php$php_version" artisan config:clear -n
 	"php$php_version" artisan config:cache -n
