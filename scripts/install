@@ -42,6 +42,10 @@ ynh_script_progression "Installing app with Composer..."
 ynh_composer_install
 ynh_composer_exec install --no-dev
 
+ynh_nodejs_install
+npm install
+npm run build
+
 #=================================================
 # BUILDING
 #=================================================
