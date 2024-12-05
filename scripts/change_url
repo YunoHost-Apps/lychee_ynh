@@ -10,6 +10,11 @@ ynh_script_progression "Updating NGINX web server configuration..."
 
 ynh_config_change_url_nginx
 
+ynh_script_progression "Updating $app's configuration files..."
+
+mv $install_dir/.env $install_dir/.env.bak
+ynh_config_add --template=".env" --destination="$install_dir/.env"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
