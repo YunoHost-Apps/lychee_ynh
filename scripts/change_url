@@ -2,7 +2,7 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-
+timezone="$(cat /etc/timezone)"
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
