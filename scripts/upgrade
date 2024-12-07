@@ -47,11 +47,9 @@ ynh_script_progression "Configuring $app..."
 ynh_composer_exec dump-autoload
 
 pushd "$install_dir"
-
-         ynh_hide_warnings npm install
-         ynh_hide_warnings npm run build
+	ynh_hide_warnings npm install
+	ynh_hide_warnings npm run build
 	"php$php_version" artisan key:generate -n --force --env
-
 	"php$php_version" artisan migrate -n --force
 	"php$php_version" artisan config:clear -n
 	"php$php_version" artisan config:cache -n

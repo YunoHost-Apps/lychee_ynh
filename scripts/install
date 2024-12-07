@@ -50,9 +50,9 @@ ynh_nodejs_install
 ynh_script_progression "configuring $app..."
 
 pushd "$install_dir"
-	 ynh_hide_warnings npm install
-         ynh_hide_warnings npm run build
-        "php$php_version" artisan key:generate -n --force --env
+	ynh_hide_warnings npm install
+	ynh_hide_warnings npm run build
+	"php$php_version" artisan key:generate -n --force --env
 	"php$php_version" artisan migrate -n --force
 	"php$php_version" artisan config:clear -n
 	"php$php_version" artisan config:cache -n
