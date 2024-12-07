@@ -8,6 +8,19 @@ ynh_app_setting_set_default --key=php_upload_max_filesize --value=1G
 timezone="$(cat /etc/timezone)"
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring downward compatibility..."
+
+# If redis_db doesn't exist, create it
+if [ -z "${redis_db:-}" ]; then
+    # Configure redis
+    redis_db=$(ynh_redis_get_free_db)
+    ynh_app_setting_set --key=redis_db --value="$redis_db"
+fi
+
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
