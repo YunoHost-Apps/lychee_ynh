@@ -3,7 +3,10 @@
 source _common.sh
 source /usr/share/yunohost/helpers
 
+redis_db=$(ynh_redis_get_free_db)
+
 ynh_app_setting_set --key=php_upload_max_filesize --value=1G
+ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 #=================================================
 # INITIALIZE AND STORE SETTINGS
@@ -23,6 +26,8 @@ ynh_setup_source --dest_dir="$install_dir"
 #=================================================
 ynh_script_progression "Adding $app's configuration files..."
 
+# placeholder
+app_key=1234
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
@@ -48,12 +53,20 @@ ynh_composer_exec install --no-dev
 ynh_script_progression "configuring $app..."
 
 pushd "$install_dir"
+
 	"php$php_version" artisan key:generate -n --force --env
 	"php$php_version" artisan migrate -n --force
 	"php$php_version" artisan config:clear -n
 	"php$php_version" artisan config:cache -n
 	"php$php_version" artisan lychee:create_user "$admin" "$password"
+
 popd
+
+# file was touched by artisan, rehash it
+ynh_store_file_checksum "$install_dir/.env"
+app_key=$(cat $install_dir/.env | grep -e ^APP_KEY | cut -c 9-)
+ynh_app_setting_set --key=app_key --value=$app_key
+
 
 chmod -R 775 /home/yunohost.app/$app/
 chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"

@@ -4,6 +4,13 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# REMOVE THE REDIS DATABASE
+#=================================================
+ynh_script_progression "Removing Redis database..."
+
+ynh_redis_remove_db "$redis_db"
+
+#=================================================
 # REMOVE SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression "Removing system configurations related to $app..."
