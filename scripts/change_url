@@ -25,6 +25,11 @@ mv $install_dir/.env $install_dir/.env.bak
 
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
+pushd "$install_dir"
+    "php$php_version" artisan view:clear
+    "php$php_version" artisan optimize:clear
+popd
+
 #=================================================
 # END OF SCRIPT
 #=================================================

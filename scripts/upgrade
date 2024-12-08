@@ -8,6 +8,24 @@ ynh_app_setting_set_default --key=php_upload_max_filesize --value=1G
 timezone="$(cat /etc/timezone)"
 
 #=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression "Ensuring downward compatibility..."
+
+# If redis_db doesn't exist, create it
+if [ -z "${redis_db:-}" ]; then
+    # Configure redis
+    redis_db=$(ynh_redis_get_free_db)
+    ynh_app_setting_set --key=redis_db --value="$redis_db"
+fi
+
+if [ -z "${app_key:-}" ]; then
+    # Configure redis
+    app_key=$(cat $install_dir/.env | grep -e ^APP_KEY | cut -c 9-)
+    ynh_app_setting_set --key=app_key --value=$app_key
+fi
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
@@ -46,11 +64,10 @@ ynh_script_progression "Configuring $app..."
 ynh_composer_exec dump-autoload
 
 pushd "$install_dir"
-	#"php$php_version" artisan key:generate -n --force --env
-	"php$php_version" artisan migrate -n --force
-	"php$php_version" artisan config:clear -n
-	"php$php_version" artisan config:cache -n
-	"php$php_version" artisan view:clear
+    "php$php_version" artisan migrate -n --force
+    "php$php_version" artisan config:clear -n
+    "php$php_version" artisan config:cache -n
+    "php$php_version" artisan view:clear
 popd
 
 chmod -R 775 /home/yunohost.app/$app/
