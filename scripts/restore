@@ -19,6 +19,7 @@ ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
 
+mv $install_dir/.env $install_dir/.env.bak
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym"
@@ -51,6 +52,10 @@ ynh_script_progression "Restoring system configurations related to $app..."
 ynh_restore "/etc/php/$php_version/fpm/pool.d/$app.conf"
 
 ynh_restore "/etc/nginx/conf.d/$domain.d/$app.conf"
+
+pushd "$install_dir"
+    "php$php_version" artisan view:clear
+popd
 
 #=================================================
 # RELOAD NGINX AND PHP-FPM
