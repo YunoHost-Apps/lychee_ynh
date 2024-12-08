@@ -4,11 +4,26 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
+timezone="$(cat /etc/timezone)"
+
+#=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
 ynh_script_progression "Updating NGINX web server configuration..."
 
 ynh_config_change_url_nginx
+
+#=================================================
+# SPECIFIC MODIFICATIONS
+#=================================================
+ynh_script_progression "Updating $app's configuration files..."
+
+mv $install_dir/.env $install_dir/.env.bak
+
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
 # END OF SCRIPT
