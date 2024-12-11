@@ -25,7 +25,7 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 **分发版本：** 6.1.2~ynh2
 
-**演示：** <https://lychee-demo.fly.dev/landing>
+**演示：** <https://lychee-demo.fly.dev/>
 
 ## 截图
 

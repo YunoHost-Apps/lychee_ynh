@@ -25,7 +25,7 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 **Поставляемая версия:** 6.1.2~ynh2
 
-**Демо-версия:** <https://lychee-demo.fly.dev/landing>
+**Демо-версия:** <https://lychee-demo.fly.dev/>
 
 ## Снимки экрана
 

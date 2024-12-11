@@ -25,7 +25,7 @@ Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont s
 
 **Version incluse :** 6.1.2~ynh2
 
-**Démo :** <https://lychee-demo.fly.dev/landing>
+**Démo :** <https://lychee-demo.fly.dev/>
 
 ## Captures d’écran
 

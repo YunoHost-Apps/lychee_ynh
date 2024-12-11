@@ -25,7 +25,7 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 **Versi terkirim:** 6.1.2~ynh2
 
-**Demo:** <https://lychee-demo.fly.dev/landing>
+**Demo:** <https://lychee-demo.fly.dev/>
 
 ## Tangkapan Layar
 
