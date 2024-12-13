@@ -7,7 +7,7 @@ description.fr = "Système de gestion de photos pour gérer et partager des phot
 
 version = "6.1.2~ynh2"
 
-maintainers = []
+maintainers = ["DeMiro5001"]
 
 [upstream]
 license = "MIT"
