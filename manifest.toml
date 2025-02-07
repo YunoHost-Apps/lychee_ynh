@@ -53,6 +53,7 @@ ram.runtime = "50M"
     help.en = "Matomo url."
     help.fr = "L'url de matomo."
     type = "url"
+    optional = true
     
 [resources]
 
