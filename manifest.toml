@@ -50,8 +50,8 @@ ram.runtime = "50M"
     type = "password"
 
     [install.matomo]
-    help.en = "Matomo url."
-    help.fr = "L'url de matomo."
+    ask.en = "Matomo url."
+    ask.fr = "L'url de matomo."
     type = "url"
     optional = true
     
