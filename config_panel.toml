@@ -1,0 +1,17 @@
+version = "1.0"
+
+[main]
+name.en = "Lychee configuration"
+name.fr = "Configuration de Lychee"
+
+    [main.config]
+    name.en = "Configuration Options"
+    name.fr = "Options de configuration"
+
+        [main.config.matomo]
+        ask.en = "Matomo URL"
+        ask.fr = "URL de Matomo"
+        type = "url"
+        help.en = "Define Matomo server address"
+        help.fr = "Définir l'adresse du serveur Matomo"
+
