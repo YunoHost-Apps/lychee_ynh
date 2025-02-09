@@ -48,6 +48,14 @@ ram.runtime = "50M"
     help.en = "Password must be longer than 8 characters."
     help.fr = "Le mot de passe doit comporter plus de 8 caractères."
     type = "password"
+
+    [install.matomo]
+    ask.en = "Matomo URL."
+    ask.fr = "URL de Matomo."
+    type = "url"
+    optional = true    
+    help.en = "Provide your matomo server address if you have one, otherwise leave it blank."
+    help.fr = "Indiquez l'adresse de votre serveur Matomo si vous en avez un, sinon laissez-la vide."
     
 [resources]
 
