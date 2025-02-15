@@ -20,10 +20,12 @@ if [ -z "${redis_db:-}" ]; then
 fi
 
 if [ -z "${app_key:-}" ]; then
-    # Configure redis
+    # Configure app key
     app_key=$(cat $install_dir/.env | grep -e ^APP_KEY | cut -c 9-)
     ynh_app_setting_set --key=app_key --value=$app_key
 fi
+
+ynh_app_setting_set_default --key=matomo --value=""
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE

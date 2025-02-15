@@ -5,7 +5,7 @@ name = "Lychee"
 description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
-version = "6.2.0~ynh1"
+version = "6.2.0~ynh2"
 
 maintainers = ["DeMiro5001"]
 
@@ -17,7 +17,7 @@ admindoc = "https://lycheeorg.github.io/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 11.2.30"
+yunohost = ">= 12.0.9"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64"]
 multi_instance = true
@@ -49,6 +49,14 @@ ram.runtime = "50M"
     help.fr = "Le mot de passe doit comporter plus de 8 caractères."
     type = "password"
 
+    [install.matomo]
+    ask.en = "Matomo URL."
+    ask.fr = "URL de Matomo."
+    type = "url"
+    optional = true
+    help.en = "Provide your matomo server address if you have one, otherwise leave it blank."
+    help.fr = "Indiquez l'adresse de votre serveur Matomo si vous en avez un, sinon laissez-la vide."
+    
 [resources]
 
     [resources.sources]
