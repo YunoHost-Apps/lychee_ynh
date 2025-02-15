@@ -33,8 +33,8 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 ## Dokumentazioa eta baliabideak
 
-- Aplikazioaren webgune ofiziala: <https://lycheeorg.github.io/>
-- Administratzaileen dokumentazio ofiziala: <https://lycheeorg.github.io/docs/>
+- Aplikazioaren webgune ofiziala: <https://lycheeorg.dev/>
+- Administratzaileen dokumentazio ofiziala: <https://lycheeorg.dev/docs/>
 - Jatorrizko aplikazioaren kode-gordailua: <https://github.com/LycheeOrg/Lychee>
 - YunoHost Denda: <https://apps.yunohost.org/app/lychee>
 - Eman errore baten berri: <https://github.com/YunoHost-Apps/lychee_ynh/issues>

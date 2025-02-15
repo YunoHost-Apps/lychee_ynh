@@ -33,8 +33,8 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 ## Документация и ресурсы
 
-- Официальный веб-сайт приложения: <https://lycheeorg.github.io/>
-- Официальная документация администратора: <https://lycheeorg.github.io/docs/>
+- Официальный веб-сайт приложения: <https://lycheeorg.dev/>
+- Официальная документация администратора: <https://lycheeorg.dev/docs/>
 - Репозиторий кода главной ветки приложения: <https://github.com/LycheeOrg/Lychee>
 - Магазин YunoHost: <https://apps.yunohost.org/app/lychee>
 - Сообщите об ошибке: <https://github.com/YunoHost-Apps/lychee_ynh/issues>

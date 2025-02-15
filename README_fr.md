@@ -33,8 +33,8 @@ Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont s
 
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://lycheeorg.github.io/>
-- Documentation officielle de l’admin : <https://lycheeorg.github.io/docs/>
+- Site officiel de l’app : <https://lycheeorg.dev/>
+- Documentation officielle de l’admin : <https://lycheeorg.dev/docs/>
 - Dépôt de code officiel de l’app : <https://github.com/LycheeOrg/Lychee>
 - YunoHost Store : <https://apps.yunohost.org/app/lychee>
 - Signaler un bug : <https://github.com/YunoHost-Apps/lychee_ynh/issues>
