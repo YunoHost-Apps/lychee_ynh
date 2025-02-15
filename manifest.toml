@@ -11,9 +11,9 @@ maintainers = ["DeMiro5001"]
 
 [upstream]
 license = "MIT"
-website = "https://lycheeorg.github.io/"
+website = "https://lycheeorg.dev/"
 demo = "https://lychee-demo.fly.dev/"
-admindoc = "https://lycheeorg.github.io/docs/"
+admindoc = "https://lycheeorg.dev/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
