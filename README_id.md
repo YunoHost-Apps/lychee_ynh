@@ -23,7 +23,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Versi terkirim:** 6.3.0~ynh1
+**Versi terkirim:** 6.3.1~ynh1
 
 **Demo:** <https://lychee-demo.fly.dev/>
 
@@ -33,8 +33,8 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 ## Dokumentasi dan sumber daya
 
-- Website aplikasi resmi: <https://lycheeorg.github.io/>
-- Dokumentasi admin resmi: <https://lycheeorg.github.io/docs/>
+- Website aplikasi resmi: <https://lycheeorg.dev/>
+- Dokumentasi admin resmi: <https://lycheeorg.dev/docs/>
 - Depot kode aplikasi hulu: <https://github.com/LycheeOrg/Lychee>
 - Gudang YunoHost: <https://apps.yunohost.org/app/lychee>
 - Laporkan bug: <https://github.com/YunoHost-Apps/lychee_ynh/issues>

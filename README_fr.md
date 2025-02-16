@@ -23,7 +23,7 @@ Téléchargez, gérez et partagez des photos comme à partir d'une application n
 Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont stockées en toute sécurité.
 
 
-**Version incluse :** 6.3.0~ynh1
+**Version incluse :** 6.3.1~ynh1
 
 **Démo :** <https://lychee-demo.fly.dev/>
 
@@ -33,8 +33,8 @@ Lychee est livré avec tout ce dont vous avez besoin et toutes vos photos sont s
 
 ## Documentations et ressources
 
-- Site officiel de l’app : <https://lycheeorg.github.io/>
-- Documentation officielle de l’admin : <https://lycheeorg.github.io/docs/>
+- Site officiel de l’app : <https://lycheeorg.dev/>
+- Documentation officielle de l’admin : <https://lycheeorg.dev/docs/>
 - Dépôt de code officiel de l’app : <https://github.com/LycheeOrg/Lychee>
 - YunoHost Store : <https://apps.yunohost.org/app/lychee>
 - Signaler un bug : <https://github.com/YunoHost-Apps/lychee_ynh/issues>
