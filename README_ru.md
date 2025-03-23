@@ -23,7 +23,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Поставляемая версия:** 6.3.5~ynh1
+**Поставляемая версия:** 6.4.0~ynh1
 
 **Демо-версия:** <https://lychee-demo.fly.dev/>
 
