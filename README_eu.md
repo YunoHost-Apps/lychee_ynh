@@ -23,7 +23,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Paketatutako bertsioa:** 6.4.0~ynh1
+**Paketatutako bertsioa:** 6.4.1~ynh1
 
 **Demoa:** <https://lychee-demo.fly.dev/>
 
@@ -43,7 +43,7 @@ Lychee comes with everything you need and all your photos are stored securely.
 
 Bidali `pull request`a [`testing` abarrera](https://github.com/YunoHost-Apps/lychee_ynh/tree/testing).
 
-`testing` abarra probatzeko, ondorengoa egin:
+`testing` abarra probatzeko, honakoa egin:
 
 ```bash
 sudo yunohost app install https://github.com/YunoHost-Apps/lychee_ynh/tree/testing --debug

@@ -3,7 +3,7 @@ Este archivo README esta generado automaticamente<https://github.com/YunoHost/ap
 No se debe editar a mano.
 -->
 
-# Lychee para Yunohost
+# Lychee para YunoHost
 
 [![Nivel de integración](https://apps.yunohost.org/badge/integration/lychee)](https://ci-apps.yunohost.org/ci/apps/lychee/)
 ![Estado funcional](https://apps.yunohost.org/badge/state/lychee)
@@ -23,7 +23,7 @@ Upload, manage and share photos like from a native application.
 Lychee comes with everything you need and all your photos are stored securely.
 
 
-**Versión actual:** 6.4.0~ynh1
+**Versión actual:** 6.4.1~ynh1
 
 **Demo:** <https://lychee-demo.fly.dev/>
 
