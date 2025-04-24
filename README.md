@@ -4,7 +4,7 @@ It shall NOT be edited by hand.
 -->
 
 <h1>
-  <img src="https://raw.githubusercontent.com/YunoHost/apps/master/logos/lychee.png" width="32px" alt="Logo of Lychee">
+  <img src="https://raw.githubusercontent.com/YunoHost/apps/main/logos/lychee.png" width="32px" alt="Logo of Lychee">
   Lychee, packaged for YunoHost
 </h1>
 
@@ -12,7 +12,7 @@ Photo-management-system to manage and share photos
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://lycheeorg.dev/)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://lychee-demo.fly.dev/)
-![Version: 6.4.2~ynh1](https://img.shields.io/badge/Version-6.4.2~ynh1-rgba(0,150,0,1)?style=for-the-badge)
+[![Version: 6.5.1~ynh1](https://img.shields.io/badge/Version-6.5.1~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/lychee/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/lychee"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
@@ -20,6 +20,8 @@ Photo-management-system to manage and share photos
 </div>
 
 ## 📦 Developer info
+
+[![Automatic tests level](https://apps.yunohost.org/badge/cilevel/lychee)](https://ci-apps.yunohost.org/ci/apps/lychee/)
 
 🛠️ Upstream Lychee repository: <https://github.com/LycheeOrg/Lychee>
 
