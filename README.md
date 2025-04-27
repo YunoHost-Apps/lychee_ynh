@@ -14,6 +14,7 @@ Photo-management-system to manage and share photos
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://lychee-demo.fly.dev/)
 [![Version: 6.5.2~ynh1](https://img.shields.io/badge/Version-6.5.2~ynh1-rgba(0,150,0,1)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/lychee/)
 
+
 <div align="center">
 <a href="https://apps.yunohost.org/app/lychee"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
 <a href="https://github.com/YunoHost-Apps/lychee_ynh/issues"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_report_an_issue.svg"/></a>
