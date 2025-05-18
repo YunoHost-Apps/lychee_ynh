@@ -10,7 +10,7 @@ ynh_script_progression --message="Loading additionnal settings..." --weight=1
 
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --key=redis_db --value=$redis_db
-timezone="$(cat /etc/timezone)"
+timezone="$(timedatectl show --value --property=Timezone)"
 
 #=================================================
 # RESTORE THE APP MAIN DIR
