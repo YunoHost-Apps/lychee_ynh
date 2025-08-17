@@ -12,7 +12,6 @@ Photo-management-system to manage and share photos
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://lycheeorg.dev/)
 [![App Demo](https://img.shields.io/badge/App_Demo-blue?style=for-the-badge)](https://lychee-demo.fly.dev/)
-
 [![Version: 6.8.0~ynh1](https://img.shields.io/badge/Version-6.8.0~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/lychee/)
 
 <div align="center">
