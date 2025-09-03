@@ -7,3 +7,7 @@ test_format = 1.0
     # -------------------------------
     
     test_upgrade_from.fc44c0a853aeaebb4854a3271a4d0c86a3d61bfc.name = "Upgrade from 5.1.2"
+
+[default.curl_tests]
+
+    gallery.path = "/gallery"
