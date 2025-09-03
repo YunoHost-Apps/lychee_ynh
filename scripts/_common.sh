@@ -4,7 +4,7 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-composer_version="2.7.7"
+#REMOVEME? composer_version="2.7.7"
 
 temp_fix() {
 
