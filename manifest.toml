@@ -6,7 +6,7 @@ description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
 
-version = "6.9.0~ynh2"
+version = "6.9.0~ynh3"
 
 
 maintainers = ["DeMiro5001"]
