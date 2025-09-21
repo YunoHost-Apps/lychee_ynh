@@ -57,7 +57,7 @@ ynh_script_progression "Installing app with Composer..."
 
 #REMOVEME? ynh_composer_install
 ynh_composer_exec install --no-dev
-temp_fix
+#temp_fix
 
 #=================================================
 # BUILDING
