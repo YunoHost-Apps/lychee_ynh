@@ -55,7 +55,7 @@ ynh_config_add_nginx
 #=================================================
 ynh_script_progression "Installing app with Composer..."
 
-#temp_fix
+temp_fix
 
 #=================================================
 # BUILDING
