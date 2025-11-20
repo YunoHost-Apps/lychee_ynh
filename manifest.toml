@@ -6,7 +6,7 @@ description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
 
-version = "6.10.1~ynh1"
+version = "6.10.2~ynh1"
 
 
 maintainers = ["DeMiro5001"]
@@ -25,7 +25,6 @@ architectures = ["arm64", "amd64"]
 multi_instance = true
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -66,8 +65,8 @@ ram.runtime = "50M"
 
         [resources.sources.main]
 
-        url = "https://github.com/LycheeOrg/Lychee/releases/download/v6.10.1/Lychee.zip"
-        sha256 = "002ba954c405ad687c6546dbb11745b2b19db88abc07a1588c860afa39af0e3c"
+        url = "https://github.com/LycheeOrg/Lychee/releases/download/v6.10.2/Lychee.zip"
+        sha256 = "450e10e1590c1b7c395da7df73d7350596c7b87ce797457705cb543caca693d4"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "^Lychee\\.zip$"
@@ -92,4 +91,4 @@ ram.runtime = "50M"
     type = "mysql"
 
     [resources.composer]
-    version = "2.7.7"
+    version = "2.9.2"
