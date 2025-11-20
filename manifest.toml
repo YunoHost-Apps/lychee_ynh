@@ -25,7 +25,6 @@ architectures = ["arm64", "amd64"]
 multi_instance = true
 
 ldap = false
-
 sso = false
 
 disk = "50M"
@@ -92,4 +91,4 @@ ram.runtime = "50M"
     type = "mysql"
 
     [resources.composer]
-    version = "2.7.7"
+    version = "2.9.2"
