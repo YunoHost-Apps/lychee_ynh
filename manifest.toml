@@ -85,8 +85,8 @@ ram.runtime = "50M"
     main.auth_header = false
 
     [resources.apt]
-    packages = "mariadb-server, redis-server, ffmpeg, php8.3-xml, php8.3-imagick, php8.3-bcmath, php8.3-exif, php8.3-mbstring, php8.3-gd, php8.3-mysqli, php8.3-zip, php8.3-intl, php8.3-redis"
-
+    packages = "mariadb-server, redis-server, ffmpeg, php8.4-xml, php8.4-imagick, php8.4-bcmath, php8.4-exif, php8.4-mbstring, php8.4-gd, php8.4-mysqli, php8.4-zip, php8.4-intl, php8.4-redis"
+    
     [resources.database]
     type = "mysql"
 
