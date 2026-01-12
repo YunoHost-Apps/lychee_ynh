@@ -6,7 +6,7 @@ description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
 
-version = "7.0.1~ynh1"
+version = "7.1.0~ynh1"
 
 
 maintainers = ["DeMiro5001"]
@@ -65,8 +65,8 @@ ram.runtime = "50M"
 
         [resources.sources.main]
 
-        url = "https://github.com/LycheeOrg/Lychee/releases/download/v7.0.1/Lychee.zip"
-        sha256 = "13ca2de3f6de278daec1254189424c93f57902f470fb6048e7647f2fc25dfe54"
+        url = "https://github.com/LycheeOrg/Lychee/releases/download/v7.1.0/Lychee.zip"
+        sha256 = "e6a52b3e0204e2c5a8ab2446bc294f88e3ae643b03768113cfd5800a59c8f89b"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "^Lychee\\.zip$"
