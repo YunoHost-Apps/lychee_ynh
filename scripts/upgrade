@@ -69,7 +69,7 @@ pushd "$install_dir"
     "php$php_version" artisan config:clear -n
     "php$php_version" artisan config:cache -n
     "php$php_version" artisan view:clear
-    "php$php_version" artisan lychee:backfill-album-fields
+    # "php$php_version" artisan lychee:backfill-album-fields
 popd
 
 chmod -R 775 /home/yunohost.app/$app/
