@@ -46,7 +46,10 @@ ynh_config_add_nginx
 #=================================================
 # INSTALL APP WITH COMPOSER
 #=================================================
-ynh_script_progression "Installing app with Composer..."
+ynh_script_progression "Fixing file permissions..."
+
+chown -R "$app:$app" "$install_dir"
+chmod -R 775 "$install_dir/storage" "$install_dir/bootstrap/cache"
 
 #=================================================
 # BUILDING
@@ -54,7 +57,7 @@ ynh_script_progression "Installing app with Composer..."
 ynh_script_progression "configuring $app..."
 
 pushd "$install_dir"
-
+	"php$php_version" artisan lychee:fix-permissions
 	"php$php_version" artisan key:generate -n --force --env
 	"php$php_version" artisan migrate -n --force
 	"php$php_version" artisan config:clear -n
