@@ -44,7 +44,7 @@ ynh_config_add_phpfpm
 ynh_config_add_nginx
 
 #=================================================
-# INSTALL APP WITH COMPOSER
+# FIX PATH ISSUE AND FILES PERMISSIONS
 #=================================================
 ynh_script_progression "Fixing file permissions..."
 
