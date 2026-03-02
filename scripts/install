@@ -44,23 +44,28 @@ ynh_config_add_phpfpm
 ynh_config_add_nginx
 
 #=================================================
-# INSTALL APP WITH COMPOSER
+# FIX PATH ISSUE AND FILES PERMISSIONS
 #=================================================
-ynh_script_progression "Installing app with Composer..."
+ynh_script_progression "Fixing file permissions..."
+
+chown -R "$app:www-data" "$install_dir"
+chmod -R 775 "$install_dir/storage" "$install_dir/bootstrap/cache"
+
+chmod -R 775 /home/yunohost.app/$app/
+chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
+chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 
 #=================================================
 # BUILDING
 #=================================================
-ynh_script_progression "configuring $app..."
+ynh_script_progression "configuring $app... this may take a while"
 
 pushd "$install_dir"
-
-	"php$php_version" artisan key:generate -n --force --env
-	"php$php_version" artisan migrate -n --force
-	"php$php_version" artisan config:clear -n
-	"php$php_version" artisan config:cache -n
-	"php$php_version" artisan lychee:create_user "$admin" "$password"
-
+  ynh_exec_as_app	"php$php_version" artisan key:generate -n --force --env=production
+  ynh_exec_as_app	"php$php_version" artisan migrate -n --force
+  ynh_exec_as_app	"php$php_version" artisan config:clear -n
+  ynh_exec_as_app	"php$php_version" artisan config:cache -n
+  ynh_exec_as_app	"php$php_version" artisan lychee:create_user "$admin" "$password"
 popd
 
 # file was touched by artisan, rehash it
@@ -69,10 +74,6 @@ app_key=$(cat $install_dir/.env | grep -e ^APP_KEY | cut -c 9-)
 ynh_app_setting_set --key=app_key --value=$app_key
 
 temp_fix
-
-chmod -R 775 /home/yunohost.app/$app/
-chgrp "$app" -R "$install_dir/storage" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads"
-chmod -R 2775 "$install_dir/storage" "$install_dir/app" "$install_dir/public/dist" "$install_dir/public/sym" "$data_dir/uploads" "$install_dir/bootstrap/"
 
 #=================================================
 # END OF SCRIPT
