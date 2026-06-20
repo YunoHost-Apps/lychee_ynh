@@ -19,7 +19,7 @@ admindoc = "https://lycheeorg.dev/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64"]
 multi_instance = true
@@ -85,10 +85,10 @@ ram.runtime = "50M"
     main.auth_header = false
 
     [resources.apt]
-    packages = "mariadb-server, redis-server, ffmpeg, php8.4-xml, php8.4-imagick, php8.4-bcmath, php8.4-exif, php8.4-mbstring, php8.4-gd, php8.4-mysqli, php8.4-zip, php8.4-intl, php8.4-redis, php8.4-ldap"
+    packages = "mariadb-server, redis-server, ffmpeg, php8.5-xml, php8.5-imagick, php8.5-bcmath, php8.5-exif, php8.5-mbstring, php8.5-gd, php8.5-mysqli, php8.5-zip, php8.5-intl, php8.5-redis, php8.5-ldap"
     
     [resources.database]
     type = "mysql"
 
     [resources.composer]
-    version = "2.9.2"
+    version = "2.10.1"
