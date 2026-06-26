@@ -53,10 +53,6 @@ ynh_config_add_nginx
 #=================================================
 # FIX PATH ISSUE AND FILES PERMISSIONS
 #=================================================
-ynh_script_progression "Fix path issue..."
-
-#temp_fix
-
 ynh_script_progression "Fixing files permissions..."
 
 chown -R "$app:www-data" "$install_dir"
