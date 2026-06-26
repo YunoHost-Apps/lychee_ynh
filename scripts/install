@@ -7,12 +7,6 @@ redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --key=php_upload_max_filesize --value=1G
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
-if [ "$path" = "/" ]; then
-    app_dir=""
-else
-    app_dir="$path"
-fi
-
 #=================================================
 # INITIALIZE AND STORE SETTINGS
 #=================================================
