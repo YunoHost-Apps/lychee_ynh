@@ -8,6 +8,12 @@ source /usr/share/yunohost/helpers
 
 timezone="$(timedatectl show --value --property=Timezone)"
 
+if [ "$path" = "/" ]; then
+    app_dir=""
+else
+    app_dir="$path"
+fi
+
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
