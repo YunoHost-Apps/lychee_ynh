@@ -6,7 +6,7 @@ description.en = "Photo-management-system to manage and share photos"
 description.fr = "Système de gestion de photos pour gérer et partager des photos"
 
 
-version = "7.6.0~ynh1"
+version = "7.6.3~ynh1"
 
 
 maintainers = ["DeMiro5001"]
@@ -19,7 +19,7 @@ admindoc = "https://lycheeorg.dev/docs/"
 code = "https://github.com/LycheeOrg/Lychee"
 
 [integration]
-yunohost = ">= 12.1.38"
+yunohost = ">= 12.1.39"
 helpers_version = "2.1"
 architectures = ["arm64", "amd64"]
 multi_instance = true
@@ -65,8 +65,8 @@ ram.runtime = "50M"
 
         [resources.sources.main]
 
-        url = "https://github.com/LycheeOrg/Lychee/releases/download/v7.6.0/Lychee.zip"
-        sha256 = "91de2033c490405d695997523cb5fd035198323816e7dd12d307a721e221a1b8"
+        url = "https://github.com/LycheeOrg/Lychee/releases/download/v7.6.3/Lychee.zip"
+        sha256 = "547f78fc75653cbb8ec5114b1faf04b569808308c6497baa20b0d7ccafd033fd"
 
         autoupdate.strategy = "latest_github_release"
         autoupdate.asset = "^Lychee\\.zip$"
@@ -85,10 +85,10 @@ ram.runtime = "50M"
     main.auth_header = false
 
     [resources.apt]
-    packages = "mariadb-server, redis-server, ffmpeg, php8.4-xml, php8.4-imagick, php8.4-bcmath, php8.4-exif, php8.4-mbstring, php8.4-gd, php8.4-mysqli, php8.4-zip, php8.4-intl, php8.4-redis, php8.4-ldap"
+    packages = "mariadb-server, redis-server, ffmpeg, php8.5-xml, php8.5-imagick, php8.5-bcmath, php8.5-exif, php8.5-mbstring, php8.5-gd, php8.5-mysqli, php8.5-zip, php8.5-intl, php8.5-redis, php8.5-ldap"
     
     [resources.database]
     type = "mysql"
 
     [resources.composer]
-    version = "2.9.2"
+    version = "2.10.1"
