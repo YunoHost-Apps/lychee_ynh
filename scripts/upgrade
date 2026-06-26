@@ -24,6 +24,12 @@ if [ -z "${app_key:-}" ]; then
     ynh_app_setting_set --key=app_key --value=$app_key
 fi
 
+if [ "$path" = "/" ]; then
+    app_dir=""
+else
+    app_dir="$path"
+fi
+
 ynh_app_setting_set_default --key=matomo --value=""
 
 #=================================================
