@@ -24,6 +24,12 @@ if [ -z "${app_key:-}" ]; then
     ynh_app_setting_set --key=app_key --value=$app_key
 fi
 
+if [ "$path" = "/" ]; then
+    app_dir=""
+else
+    app_dir="$path"
+fi
+
 ynh_app_setting_set_default --key=matomo --value=""
 
 #=================================================
@@ -70,12 +76,7 @@ ynh_composer_exec dump-autoload
 
 pushd "$install_dir"
   ynh_exec_as_app	"php$php_version" artisan migrate -n --force
-  ynh_exec_as_app	"php$php_version" artisan config:clear -n
-  ynh_exec_as_app	"php$php_version" artisan config:cache -n
-  ynh_exec_as_app	"php$php_version" artisan route:clear -n
-  # ynh_exec_as_app	"php$php_version" artisan route:cache -n
-  ynh_exec_as_app	"php$php_version" artisan view:clear -n
-  ynh_exec_as_app	"php$php_version" artisan view:cache -n
+  ynh_exec_as_app	"php$php_version" artisan optimize:clear
 popd
 
 #=================================================
