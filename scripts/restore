@@ -1,6 +1,5 @@
 #!/bin/bash
 
-source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -18,6 +17,12 @@ timezone="$(timedatectl show --value --property=Timezone)"
 ynh_script_progression "Restoring the app main directory..."
 
 ynh_restore "$install_dir"
+
+if [ "$path" = "/" ]; then
+    app_dir=""
+else
+    app_dir="$path"
+fi
 
 mv $install_dir/.env $install_dir/.env.bak
 ynh_config_add --template=".env" --destination="$install_dir/.env"
