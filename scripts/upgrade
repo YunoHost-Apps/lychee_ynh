@@ -34,6 +34,7 @@ fi
 asset_url="https://$domain$path"
 if [ "$path" != "/" ]
     asset_url="$asset_url/"
+fi
 
 ynh_app_setting_set_default --key=matomo --value=""
 
