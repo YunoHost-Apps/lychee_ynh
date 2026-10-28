@@ -24,6 +24,12 @@ else
     app_dir="$path"
 fi
 
+# Add a / at the end of the path if the path is not /
+asset_url="https://$domain$path"
+if [ "$path" != "/" ]; then
+    asset_url="$asset_url/"
+fi
+
 mv $install_dir/.env $install_dir/.env.bak
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
