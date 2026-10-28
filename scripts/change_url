@@ -14,6 +14,12 @@ else
     app_dir="$path"
 fi
 
+# Add a / at the end of the path if the path is not /
+asset_url="https://$domain$path"
+if [ "$path" != "/" ]; then
+    asset_url="$asset_url/"
+fi
+
 #=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
