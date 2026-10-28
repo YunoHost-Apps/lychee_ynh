@@ -17,6 +17,7 @@ fi
 asset_url="https://$domain$path"
 if [ "$path" != "/" ]
     asset_url="$asset_url/"
+fi
 
 #=================================================
 # INITIALIZE AND STORE SETTINGS
