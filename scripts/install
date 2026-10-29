@@ -4,7 +4,12 @@ source /usr/share/yunohost/helpers
 
 redis_db=$(ynh_redis_get_free_db)
 
-ynh_app_setting_set --key=php_upload_max_filesize --value=1G
+ynh_app_setting_set_default --key=php_upload_max_filesize --value=1G
+ynh_app_setting_set_default --key=php_memory_limit --value=512M
+ynh_app_setting_set_default --key=php_post_max_size --value=1050M
+ynh_app_setting_set_default --key=php_upload_max_filesize --value=1000M
+ynh_app_setting_set_default --key=php_max_execution_time --value=200
+
 ynh_app_setting_set --key=redis_db --value="$redis_db"
 
 if [ "$path" = "/" ]; then
